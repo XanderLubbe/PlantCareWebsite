@@ -16,10 +16,10 @@ insert into Address (province, city, userId) values ('Gauteng', 'Limoges', 1);
 insert into Address (province, city, userId) values ('Gauteng', 'Espera Feliz', 2);
 insert into Address (province, city, userId) values ('EasternCape', 'Yelets', 3);
 insert into Address (province, city, userId) values ('FreeState', 'Franco da Rocha', 4);
-insert into Address (province, city, userId) values ('Limpopo', 'Guayabal de Síquima', 5);
+insert into Address (province, city, userId) values ('Limpopo', 'Guayabal de Squima', 5);
 insert into Address (province, city, userId) values ('NothernCape', 'Minami-rinkan', 6);
 insert into Address (province, city, userId) values ('Gauteng', 'Luntas', 7);
-insert into Address (province, city, userId) values ('NothernCape', 'Chang’an', 8);
+insert into Address (province, city, userId) values ('NothernCape', 'Changan', 8);
 insert into Address (province, city, userId) values ('FreeState', 'Markivka', 9);
 insert into Address (province, city, userId) values ('Limpopo', 'Kamsack', 10);
 
