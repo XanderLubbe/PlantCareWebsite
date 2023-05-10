@@ -12,7 +12,7 @@ CREATE TABLE [AppUser](
   [userId] integer PRIMARY KEY IDENTITY(1, 1),
   [username] varchar(50),
   [firstname] varchar(max),
-  [surnnme] varchar(max),
+  [surname] varchar(max),
   [email] varchar(100),
   [password] varchar(max)
 );
