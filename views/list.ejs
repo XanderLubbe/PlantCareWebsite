@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/test.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Plant List</h1>
+    <form action="/plant/list" method="POST">
+        <input name="query" type="text">
+        <button type="submit">Submit</button>
+    </form>
+        <% if (list && list.length > 0) { %>
+            <ul>
+                <% list.forEach(function(plant) { %>
+                    <li><pre><code><%= JSON.stringify(plant, null, 2) %></code></pre></li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No plants found</p>
+        <% } %>
+</body>
+</html>

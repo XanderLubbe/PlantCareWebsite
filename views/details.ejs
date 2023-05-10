@@ -8,9 +8,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Dashboard</h1>
-    <a href="/">Home</a>
-    <a href="/plant/list">List</a>
-    <a href="/plant/details">Details</a>
+    <h1>Plant Details</h1>
+    <form action="/plant/details" method="POST">
+        <input name="id" type="text">
+        <button type="submit">Submit</button>
+    </form>
+    <pre><code><%= JSON.stringify(details, null, 2) %></code></pre>
 </body>
 </html>
