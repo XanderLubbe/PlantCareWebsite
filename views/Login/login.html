@@ -7,12 +7,12 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="../../public/css/Login/login.css"
+      href="/static/css/Login/login.css"
     />
   </head>
   <body>
     <header>
-      <img src="../../public/images/Login/Header_01.png" width="100%" />
+      <img src="/static/images/Login/Header_01.png" width="100%" />
     </header>
     <main>
       <fieldset>
@@ -22,17 +22,17 @@
           <input type="email" id="email" name="email" required />
           <label for="password">Password</label>
           <input type="password" id="password" name="password" required />
-          <button type="submit">Sign in</button>
+          <button type="submit"><a href="/dashboard">Sign in</a></button>
         </form>
       </fieldset>
       <p class="forgot-password">Forgot password?</p>
       <hr />
       <p class="create-account">
-        <a href="../../views/Login/register.html">Create account</a>
+        <a href="/register">Create account</a>
       </p>
     </main>
     <footer>
-      <img src="../../public/images//Login/Footer_Image_01.png" width="100%" />
+      <img src="/static/images//Login/Footer_Image_01.png" width="100%" />
     </footer>
   </body>
 </html>
