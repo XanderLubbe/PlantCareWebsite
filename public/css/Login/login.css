@@ -60,6 +60,13 @@ button:hover {
   color: #5f6368;
 }
 
+.create-account a{
+  text-decoration: none;
+}
+.create-account a:hover {
+  color: #0ed145;
+}
+
 .forgot-password:hover,
 .create-account:hover {
   text-decoration: underline;
