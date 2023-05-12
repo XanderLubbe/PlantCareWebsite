@@ -1,27 +1,16 @@
+USE PlantDB;
 /*Insert statements for User*/
+insert into AppUser (username,email,passcode, city, province) values ('nchild0','nchild0@ameblo.jp', 'ePOMNxAH', 'Johannesburg', 'Gauteng');
+insert into AppUser (username,email,passcode, city, province) values ('jlongbothom1','jlongbothom1@goodreads.com', 'Na4xA8Cc8e', 'Johannesburg', 'Gauteng');
+insert into AppUser (username,email,passcode, city, province) values ('gmaltster2','gmaltster2@google.it', 'mUBYrKSbJl', 'Johannesburg', 'Gauteng');
+insert into AppUser (username,email,passcode, city, province) values ('ooliveras3','ooliveras3@time.com', 'gqIE2jXiflI', 'Johannesburg', 'Gauteng');
+insert into AppUser (username,email,passcode, city, province) values ('jnormanvell4','jnormanvell4@ed.gov', 'bBjzNXkep5A', 'Johannesburg', 'Gauteng');
+insert into AppUser (username,email,passcode, city, province) values ('gpetzolt5','gpetzolt5@webeden.co.uk', 'cfqBGCB', 'Johannesburg', 'Gauteng');
+insert into AppUser (username,email,passcode, city, province) values ('nperschke6','nperschke6@aboutads.info', 't3C9A8', 'Johannesburg', 'Gauteng');
+insert into AppUser (username,email,passcode, city, province) values ('mwilley7','mwilley7@msu.edu', 'PKk2tA', 'Johannesburg', 'Gauteng');
+insert into AppUser (username,email,passcode, city, province) values ('cyushachkov8','cyushachkov8@surveymonkey.com', 'se11AgiT5', 'Johannesburg', 'Gauteng');
+insert into AppUser (username,email,passcode, city, province) values ('aselborne9','aselborne9@fc2.com', 'kQPau4TH0','Johannesburg', 'Gauteng');
 
-insert into AppUser (username, firstname, surname, email, password) values ('nchild0', 'Nolan', 'Child', 'nchild0@ameblo.jp', 'ePOMNxAH');
-insert into AppUser (username, firstname, surname, email, password) values ('jlongbothom1', 'Joyous', 'Longbothom', 'jlongbothom1@goodreads.com', 'Na4xA8Cc8e');
-insert into AppUser (username, firstname, surname, email, password) values ('gmaltster2', 'Genia', 'Maltster', 'gmaltster2@google.it', 'mUBYrKSbJl');
-insert into AppUser (username, firstname, surname, email, password) values ('ooliveras3', 'Orland', 'Oliveras', 'ooliveras3@time.com', 'gqIE2jXiflI');
-insert into AppUser (username, firstname, surname, email, password) values ('jnormanvell4', 'Johannes', 'Normanvell', 'jnormanvell4@ed.gov', 'bBjzNXkep5A');
-insert into AppUser (username, firstname, surname, email, password) values ('gpetzolt5', 'Genovera', 'Petzolt', 'gpetzolt5@webeden.co.uk', 'cfqBGCB');
-insert into AppUser (username, firstname, surname, email, password) values ('nperschke6', 'Neile', 'Perschke', 'nperschke6@aboutads.info', 't3C9A8');
-insert into AppUser (username, firstname, surname, email, password) values ('mwilley7', 'Mary', 'Willey', 'mwilley7@msu.edu', 'PKk2tA');
-insert into AppUser (username, firstname, surname, email, password) values ('cyushachkov8', 'Clarinda', 'Yushachkov', 'cyushachkov8@surveymonkey.com', 'se11AgiT5');
-insert into AppUser (username, firstname, surname, email, password) values ('aselborne9', 'Araldo', 'Selborne', 'aselborne9@fc2.com', 'kQPau4TH0');
-
-/*Insert statements for Address Table*/
-insert into Address (province, city, userId) values ('Gauteng', 'Limoges', 1);
-insert into Address (province, city, userId) values ('Gauteng', 'Espera Feliz', 2);
-insert into Address (province, city, userId) values ('EasternCape', 'Yelets', 3);
-insert into Address (province, city, userId) values ('FreeState', 'Franco da Rocha', 4);
-insert into Address (province, city, userId) values ('Limpopo', 'Guayabal de Squima', 5);
-insert into Address (province, city, userId) values ('NothernCape', 'Minami-rinkan', 6);
-insert into Address (province, city, userId) values ('Gauteng', 'Luntas', 7);
-insert into Address (province, city, userId) values ('NothernCape', 'Changan', 8);
-insert into Address (province, city, userId) values ('FreeState', 'Markivka', 9);
-insert into Address (province, city, userId) values ('Limpopo', 'Kamsack', 10);
 
 /*Insert statements for Plant Category*/
 insert into PlantCategory (categoryName) values ('Poaceae');

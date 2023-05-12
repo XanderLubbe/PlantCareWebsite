@@ -11,17 +11,11 @@ USE PlantDB;
 CREATE TABLE [AppUser](
   [userId] integer PRIMARY KEY IDENTITY(1, 1),
   [username] varchar(50),
-  [firstname] varchar(max),
-  [surname] varchar(max),
   [email] varchar(100),
-  [password] varchar(max)
-);
-
-CREATE TABLE [Address](
-  [addressId] integer PRIMARY KEY IDENTITY(1, 1),
-  [province] varchar(50),
+  [passcode] varchar(max),
   [city] varchar(max),
-  [userId] integer
+  [province] varchar(50)
+
 );
 
 CREATE TABLE [PlantCategory](
@@ -57,7 +51,6 @@ CREATE TABLE [UserPlantBridge](
 );
 
 
-ALTER TABLE [Address] ADD FOREIGN KEY ([userId]) REFERENCES [AppUser](userId)
 ALTER TABLE [Plant] ADD FOREIGN KEY ([categoryId]) REFERENCES [PlantCategory](plantCategoryId)
 ALTER TABLE [PlantCareRequirement] ADD FOREIGN KEY ([plantId]) REFERENCES [Plant](plantId)
 ALTER TABLE [UserPlantBridge] ADD FOREIGN KEY ([plantId]) REFERENCES [Plant](plantId)
