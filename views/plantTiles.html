@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+        <title>My Plants</title>
+
+        <style>
+            .container {
+              display: block;
+              background-color: #f2f2f2;
+              border-radius: 1rem;
+              padding: 1rem;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+              overflow: hidden;
+            }
+        
+            .block-container {
+              display: flex;
+              background-color: blue;
+              border-radius: 10px;
+            }
+        
+            .block {
+              display: block;
+              width: 30rem;
+              height: 30rem;
+              margin: 1rem;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+            .smallBlock {
+                display: block;
+              width: 5rem;
+              height: 5rem;
+              margin: 1rem;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+        
+            .leftSubcontainer { background-color: #ff0000; }
+            .rightSubcontainer { background-color: #00ff00; }
+
+            .iconImg {
+                background-color: blue;
+                display: block;
+                width: 2rem;
+            }
+            img {
+                display:block;
+                width: 100%;
+            }
+          </style>
+
+    </head>
+    <body>
+        <header>
+
+        </header>
+        <main>
+            <span class="container">
+                <span class="block-container">
+                    <span class="block leftSubcontainer">Image</span>
+                    
+                    <span class="block rightSubcontainer">
+                        <span class="smallBlock" > Light
+                            <section class="iconImg" >
+                                <img src="../public/images/waterIcon.png"/>
+                            </section>
+                        </span>
+
+                        <span class="smallBlock" >Water</span>
+                        <span class="smallBlock" >Home (indoor / outdoor)</span>
+                        <span class="smallBlock" >Care Level</span>
+                    </span>
+                </span>
+            </span>
+        </main>
+    </body>
+</html>
