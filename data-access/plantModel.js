@@ -1,16 +1,18 @@
-var config = require('../config/plant-config.js');
+var config = require('../config/plant-config');
 
 async function getPlantList(query) {
 
     const params = new URLSearchParams();
-    params.append('key', config.api_key);
     if (!isNaN(query)) {
         params.append('page', query);   
     }
     else{
         params.append('q', query);
     }
+    params.append('key', config.api_key);
 
+    console.log(params);
+    console.log(`${config.plant_list}?${params}`);
     const response = await fetch(`${config.plant_list}?${params}`);
     return await response.json();
 }
