@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign in</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/static/css/Login/login.css"
+    />
+  </head>
+  <body>
+    <header>
+      <img src="/static/images/Login/Header_01.png" width="100%" />
+      <h1><%= result %></h1>
+    </header>
+    <main>
+      <fieldset>
+        <legend>Sign in</legend>
+        <form action="/" method="POST">
+          <label for="username">Username</label>
+          <input type="username" id="username" name="username" required />
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+          <button type="submit">Sign in</button>
+        </form>
+      </fieldset>
+      <p class="forgot-password">Forgot password?</p>
+      <hr />
+      <p class="create-account">
+        <a href="/register">Create account</a>
+      </p>
+    </main>
+    <footer>
+      <img src="/static/images//Login/Footer_Image_01.png" width="100%" />
+    </footer>
+  </body>
+</html>

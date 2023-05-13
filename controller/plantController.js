@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const plantAPI = require('../data-access/plantModel');
+const plantAPI = require('../models/plant');
 
 const rootDir = path.dirname(__dirname);
 
