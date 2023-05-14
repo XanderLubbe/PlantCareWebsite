@@ -48,7 +48,7 @@ insert into PlantCareRequirement(sunlightRequirement, waterRequirement, suitable
 insert into PlantCareRequirement(sunlightRequirement, waterRequirement, suitableRegion, suitableWeather, plantId) values('complete shade', 'Average', 'Moist', 'Winter', 7);
 insert into PlantCareRequirement(sunlightRequirement, waterRequirement, suitableRegion, suitableWeather, plantId) values('full sun', 'Frequent', 'Dry', 'Summer', 8);
 insert into PlantCareRequirement(sunlightRequirement, waterRequirement, suitableRegion, suitableWeather, plantId) values('shade', 'Frequent', 'Dry', 'Summer', 9);
-insert into PlantCareRequirement(sunlightRequirement, waterRequirement, suitableRegion, suitableWeather, plantId) values('full sun', 'Frequent', 'Dry', 'Summer', 10)
+insert into PlantCareRequirement(sunlightRequirement, waterRequirement, suitableRegion, suitableWeather, plantId) values('full sun', 'Frequent', 'Dry', 'Summer', 10);
 
 /*Insert statements for user plant bridge table*/
 insert into UserPlantBridge (plantNickName, plantId, userId) values ('Polemoniaceae', 1, 1);
