@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const session = require('express-session');
 const indexRouter = require('./routes/index');
 const plantRouter = require('./routes/plant');
 const userRouter = require('./routes/user');
+const userplantRouter = require('./routes/userplant');
+
 
 
 const db = require('./data-access/db');
@@ -15,10 +18,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.use('/static', express.static('./public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(session(config.session));
 
 app.use('/', userRouter)
 app.use('/plant', plantRouter)
+app.use('/userplant', userplantRouter)
+
 
 app.listen(config.port, () => {
   db.connect();

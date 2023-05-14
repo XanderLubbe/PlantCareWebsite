@@ -2,7 +2,8 @@ const userQueries = require('../data-access/queries/userQueries');
 const connection = require('../data-access/db').con;
 
 class User {
-  constructor({username, email, password, city, province}) {
+  constructor({userId, username, email, password, city, province}) {
+    this.userId = userId;
     this.username = username;
     this.email = email;
     this.passcode = password;
@@ -30,7 +31,12 @@ class User {
         if (err) {
           reject(err);
         } else {
-          user.succeeded = (result.length != 0)?true:false;
+          if (result.length != 0) {
+            user = new User(result[0]);
+            user.succeeded = true;
+          } else {
+            user.succeeded = false;
+          }
           resolve(user);
         }
       });

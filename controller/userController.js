@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const User = require('../models/user');
-const { log } = require('console');
 
 const rootDir = path.dirname(__dirname);
 
 exports.getIndex = (req, res) => {
+    req.session.user = {succeeded: false};
     res.render('Login/login.ejs', {result: ''});
 }
 
@@ -15,9 +15,9 @@ exports.postIndex = (req, res) => {
 
     const user = new User(req.body);
     user.validateUser(user).then(responseData => {
-        console.log(responseData); 
         if (responseData.succeeded === true){
             res.render('dashboard.ejs', {user: responseData});
+            req.session.user = responseData;
         }
         else {
             res.render('Login/login.ejs', {result: errorMessage});
@@ -39,13 +39,12 @@ exports.postRegister = (req, res) => {
 
     const user = new User(req.body);
     user.registerUser(user).then(responseData => {
-        console.log(responseData);
         if (responseData === true){
             res.render('Login/login.ejs', {result: responseMessage});
-        }
-        else {
+        } else{
             res.render('Login/register.ejs', {result: errorMessage});
         }
+        
       })
       .catch(error => {
         console.error('Error registering user:', error);
@@ -54,5 +53,12 @@ exports.postRegister = (req, res) => {
 }
 
 exports.dashboard = (req, res) =>{
-    res.render('dashboard.ejs', {user: {name: "TBD"}});
+    if (!req.session.user || !req.session.user.succeeded) {
+        let errorMessage = "Oops, it looks like your login info didn't grow on us. Please try again.";
+        res.render('Login/login.ejs', {result: errorMessage});
+    }
+    else{
+        console.log(req.session.user);
+        res.render('dashboard.ejs', {user: {name: "TBD"}});
+    }
 };

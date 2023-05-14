@@ -2,10 +2,10 @@ var config = require('../config/plant-config');
 
 
 class Plant{
-    constructor({id, apiId, name, scientificName, otherName, plantImage, plantType}) {
-        this.id = id;
+    constructor({plantId, apiId, plantName, scientificName, otherName, plantImage, plantType}) {
+        this.plantId = plantId;
         this.apiId = apiId;
-        this.name = name;
+        this.plantName = plantName;
         this.scientificName = scientificName;
         this.otherName = otherName;
         this.plantImage = plantImage;
@@ -38,4 +38,4 @@ async function getPlantDetails(plantId = 1) {
     return await response.json();
 }
 
-module.exports = {getPlantList, getPlantDetails}
+module.exports = { Plant, getPlantList, getPlantDetails}

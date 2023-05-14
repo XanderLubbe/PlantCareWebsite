@@ -2,13 +2,12 @@ const userplantQueries = require('../data-access/queries/userplantQueries');
 const connection = require('../data-access/db').con;
 
 class UserPlant{
-    constructor(NickName, User, Plants){
-        this.NickName = NickName,
+    constructor(User, Plants){
         this.Plants = Plants,
         this.User = User
     }
 
-    getUserPlants(userId) {
+    getUserPlants({userId}) {
         return new Promise((resolve, reject) => {
           connection.query(userplantQueries.getUserPlants, [userId], (err, result, fields) => {
             console.log(result);
@@ -34,7 +33,7 @@ class UserPlant{
         });
     }
 
-    insertUserPlant({NickName, User, Plants}) {
+    insertUserPlant({User, Plants}) {
         return new Promise((resolve, reject) => {
           connection.query(userplantQueries.insertUserPlant, [NickName, User, Plants], (err, result, fields) => {
             console.log(result);
@@ -60,3 +59,5 @@ class UserPlant{
         });
     }
 }
+
+module.exports = UserPlant;
