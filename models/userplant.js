@@ -14,7 +14,8 @@ class UserPlant{
             if (err) {
               reject(err);
             } else {
-              resolve((result.affectedRows > 0)?true:false);
+              console.log(result);
+              resolve(result);
             }
           });
         });

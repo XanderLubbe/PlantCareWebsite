@@ -14,9 +14,21 @@ exports.index = (req, res) => {
     //     new Plant(plant);
     //     plant.NickName = 
     // } ));
-    console.log(req.session.user);
-    res.send(req.session);
-    res.render('Login/login.ejs', {result: ''});
+    console.log(user);
+    userP.getUserPlants(user)
+    .then(responseData => {
+        if (responseData === true){
+            res.render('Login/login.ejs', {result: responseMessage});
+        } else{
+            res.render('Login/register.ejs', {result: errorMessage});
+        }
+        
+      })
+    .catch(error => {
+        console.error('Error registering user:', error);
+        res.render('Login/register.ejs', {result: error});
+      });
+    // res.render('Login/login.ejs', {result: ''});
 }
 
 // exports.postIndex = (req, res) => {

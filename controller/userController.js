@@ -11,13 +11,14 @@ exports.getIndex = (req, res) => {
 }
 
 exports.postIndex = (req, res) => {
-    const errorMessage = "Looks like you've been planted at the login screen. Try again!";
+    const errorMessage = "Looks like you have been planted at the login screen. Try again!";
 
     const user = new User(req.body);
     user.validateUser(user).then(responseData => {
         if (responseData.succeeded === true){
-            res.render('dashboard.ejs', {user: responseData});
             req.session.user = responseData;
+            console.log(req.session.user.username);
+            res.redirect('/dashboard');
         }
         else {
             res.render('Login/login.ejs', {result: errorMessage});
@@ -58,7 +59,7 @@ exports.dashboard = (req, res) =>{
         res.render('Login/login.ejs', {result: errorMessage});
     }
     else{
-        console.log(req.session.user);
-        res.render('dashboard.ejs', {user: {name: "TBD"}});
+        console.log(req.session.user.username);
+        res.render('dashboard.ejs', {user: req.session.user});
     }
 };
