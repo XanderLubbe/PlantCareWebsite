@@ -14,20 +14,21 @@ exports.postIndex = (req, res) => {
     const errorMessage = "Looks like you have been planted at the login screen. Try again!";
 
     const user = new User(req.body);
-    user.validateUser(user).then(responseData => {
+    user.validateUser(user)
+    .then(responseData => {
         if (responseData.succeeded === true){
             req.session.user = responseData;
-            console.log(req.session.user.username);
+            console.log(responseData);
             res.redirect('/dashboard');
         }
         else {
             res.render('Login/login.ejs', {result: errorMessage});
         }
-      })
-      .catch(error => {
+    })
+    .catch(error => {
         console.error('Error registering user:', error);
         res.render('Login/login.ejs', {result: error});
-      });
+    });
 }
 
 exports.getRegister = (req, res) => {
@@ -39,18 +40,19 @@ exports.postRegister = (req, res) => {
     const errorMessage = 'Unferntunately failed registering!';
 
     const user = new User(req.body);
-    user.registerUser(user).then(responseData => {
+    user.registerUser(user)
+    .then(responseData => {
         if (responseData === true){
             res.render('Login/login.ejs', {result: responseMessage});
         } else{
             res.render('Login/register.ejs', {result: errorMessage});
         }
         
-      })
-      .catch(error => {
+    })
+    .catch(error => {
         console.error('Error registering user:', error);
         res.render('Login/register.ejs', {result: error});
-      });
+    });
 }
 
 exports.dashboard = (req, res) =>{

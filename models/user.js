@@ -14,7 +14,6 @@ class User {
   registerUser({username, email, passcode, city, province}) {
     return new Promise((resolve, reject) => {
       connection.query(userQueries.registerUser, [username, email, passcode, city, province], (err, result, fields) => {
-        console.log(result);
         if (err) {
           reject(err);
         } else {
@@ -27,7 +26,6 @@ class User {
   async validateUser(user) {
     return new Promise((resolve, reject) => {
       connection.query(userQueries.validateUser, [user.username, user.passcode] , (err, result, fields) => {
-        console.log("Validate User log: \n" + result); 
         if (err) {
           reject(err);
         } else {

@@ -1,5 +1,6 @@
 var config = require('../config/plant-config');
-
+const plantQueries = require('../data-access/queries/plantQueries');
+const connection = require('../data-access/db').con;
 
 class Plant{
     constructor({plantId, apiId, plantName, scientificName, otherName, plantImage, plantType}) {
@@ -10,6 +11,61 @@ class Plant{
         this.otherName = otherName;
         this.plantImage = plantImage;
         this.plantType = plantType;
+    }
+
+    async getPlantList() {
+        return new Promise((resolve, reject) => {
+            connection.query(plantQueries.getPlants, (err, result, fields) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    let plantArray = [];
+                    if (result.length != 0) {
+                      plantArray.push(result.map(plant => {return new Plant(plant)}));
+                    } else {
+                      resolve(false);
+                    }
+                    resolve(plantArray);
+                }
+            });
+        });
+    }
+
+    async getPlantById({plantId}) {
+        return new Promise((resolve, reject) => {
+            connection.query(plantQueries.getPlantById, [plantId] , (err, result, fields) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    let plant = {};
+                    if (result.length != 0) {
+                      plant = new Plant(result[0]);
+                      plant.plantId = plantId;
+                    } else {
+                      resolve(false);
+                    }
+                    resolve(plant);
+                }
+            });
+        });
+    }
+
+    async getPlantByName(plantName) {
+        return new Promise((resolve, reject) => {
+            connection.query(plantQueries.getPlantByName, [plantName] , (err, result, fields) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    let plantArray = [];
+                    if (result.length != 0) {
+                      plantArray.push(result.map(plant => {return new Plant(plant)}));
+                    } else {
+                      resolve(false);
+                    }
+                    resolve(plantArray);
+                }
+            });
+        });
     }
 }
 
