@@ -16,7 +16,7 @@
         overflow: hidden;
       }
 
-      .block {
+      .plantTile{
         display: flex;
         border-radius: 1rem;
         width: 30rem;
@@ -27,7 +27,7 @@
         flex-direction: row;
       }
 
-      .smallBlock {
+      .infoBubble {
         display: block;
         width: 5rem;
         height: 5rem;
@@ -35,28 +35,25 @@
         border-radius: 1rem;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       }
-      .smallBlockBottomText {
+      .infoBubbleBottomText {
         text-align: center;
       }
-      .smallBlockWater{background-color: #D5F2F7;}
-      .smallBlockTemp{background-color: #FDEAEC;}
-      .smallBlockSunlight{background-color: #FBF2E7 ;}
-      .smallBlockHousing{background-color: #F1F4FF;}
-      .leftSubcontainer {
-        background-color: #ff0000;
-      }
+      .infoBubbleWater{background-color: #D5F2F7;}
+      .infoBubbleTemp{background-color: #FDEAEC;}
+      .infoBubbleSunlight{background-color: #FBF2E7 ;}
+      .infoBubbleHousing{background-color: #F1F4FF;}
 
       .rightSubcontainer {
         background-color: #FFFFFF;
       }
 
-      .lefthalf {
+      .plantTileLeftHalf {
         flex-shrink: 2;
         text-align: left;
         display: flex;
       }
 
-      .righthalf {
+      .plantTileRightHalf {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
@@ -88,12 +85,12 @@
   <body>
     <header></header>
     <main>
-        <!-- insert plantTile here  -->
+        <!-- insert plantTile here based on number in db, need objects to read off of -->
         <span class="container">
-        <%- plantTiles %>
-        <%- plantTiles %>
-        <%- plantTiles %>
-    </span>
+            <% for (let i = 0; i < 3; i++) { %>
+              <%- plantTiles %>
+            <% } %>
+        </span>
 
     </main>
   </body>
