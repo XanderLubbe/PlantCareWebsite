@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Plants</title>
+
+    <style>
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #f2f2f2;
+        border-radius: 1rem;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .block {
+        display: flex;
+        border-radius: 1rem;
+        width: 30rem;
+        min-width: 400px;
+        height: 20rem;
+        margin: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        flex-direction: row;
+      }
+
+      .smallBlock {
+        display: block;
+        width: 5rem;
+        height: 5rem;
+        margin: 0.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      .smallBlockBottomText {
+        text-align: center;
+      }
+      .smallBlockWater{background-color: #D5F2F7;}
+      .smallBlockTemp{background-color: #FDEAEC;}
+      .smallBlockSunlight{background-color: #FBF2E7 ;}
+      .smallBlockHousing{background-color: #F1F4FF;}
+      .leftSubcontainer {
+        background-color: #ff0000;
+      }
+
+      .rightSubcontainer {
+        background-color: #FFFFFF;
+      }
+
+      .lefthalf {
+        flex-shrink: 2;
+        text-align: left;
+        display: flex;
+      }
+
+      .righthalf {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        flex-grow: 1;
+        justify-content: center;
+        align-content: flex-start;
+      }
+
+      .iconImg {
+        display: block;
+        width: 1.2rem;
+        height: 1.2rem;
+        background-color: white;
+      }
+
+      .headerInfoBlock {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 8px;
+      }
+
+      img {
+        border-radius: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header></header>
+    <main>
+        <!-- insert plantTile here  -->
+        <span class="container">
+        <%- plantTiles %>
+        <%- plantTiles %>
+        <%- plantTiles %>
+    </span>
+
+    </main>
+  </body>
+</html>

@@ -8,4 +8,6 @@ router.get('/list/:query', PlantController.showList);
 
 router.get('/details/:id', PlantController.showDetails);
 
+router.get('/test', PlantController.testy);
+
 module.exports = router;
