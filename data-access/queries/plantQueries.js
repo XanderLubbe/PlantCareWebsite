@@ -6,6 +6,9 @@ exports.getPlants  = `SELECT * FROM plant`;
 
 exports.getPlantCare = `SELECT * FROM plantcarerequirement WHERE plantId = ?`;
 
+exports.insertPlant = `INSERT INTO plant (plantApiId, plantName, scientificName, otherName, plantImage, plantType, categoryId) VALUES (?, ?, ?, ?, ?, ?, 1)` ;
+
+
 
 
 

@@ -13,6 +13,16 @@ class Plant{
         this.plantType = plantType;
     }
 
+    // constructor({plantId, id, common_name, scientific_name, other_name, plantImage, plantType}) {
+    //     this.plantId = plantId;
+    //     this.apiId = id;
+    //     this.plantName = common_name;
+    //     this.scientificName = scientific_name[0];
+    //     this.otherName = other_name[0];
+    //     this.plantImage = common_name.trim() +'.png';
+    //     this.plantType = plantType;
+    // }
+
     async getPlantList() {
         return new Promise((resolve, reject) => {
             connection.query(plantQueries.getPlants, (err, result, fields) => {
@@ -67,6 +77,18 @@ class Plant{
             });
         });
     }
+    
+    async insertPlant({apiId, plantName, scientificName, otherName, plantImage, plantType}) {
+        return new Promise((resolve, reject) => {
+            connection.query(plantQueries.insertPlant, [apiId, plantName, scientificName, otherName, plantImage, plantType] , (err, result, fields) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(true);
+                }
+            });
+        });
+    }
 }
 
 async function getPlantList(query) {
@@ -80,8 +102,6 @@ async function getPlantList(query) {
     }
     params.append('key', config.api_key);
 
-    console.log(params);
-    console.log(`${config.plant_list}?${params}`);
     const response = await fetch(`${config.plant_list}?${params}`);
     return await response.json();
 }

@@ -6,6 +6,7 @@ const indexRouter = require('./routes/index');
 const plantRouter = require('./routes/plant');
 const userRouter = require('./routes/user');
 const userplantRouter = require('./routes/userplant');
+const weatherRouter = require('./routes/weather');
 
 
 
@@ -23,7 +24,7 @@ app.use(session(config.session));
 app.use('/', userRouter)
 app.use('/plant', plantRouter)
 app.use('/userplant', userplantRouter)
-
+app.use('/weather', weatherRouter)
 
 app.listen(config.port, () => {
   db.connect();
