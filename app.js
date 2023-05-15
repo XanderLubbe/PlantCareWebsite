@@ -2,13 +2,10 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const session = require('express-session');
-const indexRouter = require('./routes/index');
 const plantRouter = require('./routes/plant');
 const userRouter = require('./routes/user');
 const userplantRouter = require('./routes/userplant');
 const weatherRouter = require('./routes/weather');
-
-
 
 const db = require('./data-access/db');
 

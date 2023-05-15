@@ -11,8 +11,8 @@ exports.index = (req, res) => {
     const user = req.session.user;
     UserPlant.getUserPlants(user)
     .then(responseData => {
+        let userplants = [];
         responseData.map((item, index) =>{
-                let userplants = [];
                 const getPlant = new Plant(item);
                 getPlant.getPlantById(getPlant)
                 .then(plantData =>{
