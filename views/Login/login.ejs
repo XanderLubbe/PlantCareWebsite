@@ -4,29 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Sign in</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="/static/css/Login/login.css"
-    />
+    <link rel="stylesheet" type="text/css" href="/static/css/Login/login.css" />
   </head>
   <body>
     <header>
       <img src="/static/images/Login/Header_01.png" width="100%" />
-      <h1><%= result %></h1>
+      <!-- <h1><%= result %></h1> -->
     </header>
     <main>
       <fieldset>
         <legend>Sign in</legend>
         <form action="/" method="POST">
           <label for="username">Username</label>
-          <input type="username" id="username" name="username" required />
+          <input
+            type="username"
+            id="username"
+            name="username"
+            required
+            pattern="^\S+$"
+          />
           <label for="password">Password</label>
           <input type="password" id="password" name="password" required />
           <button type="submit">Sign in</button>
         </form>
       </fieldset>
-      <p class="forgot-password">Forgot password?</p>
+      <p class="forgot-password">
+        <a href="/errors">Forgot password?</a>
+      </p>
+      <% if (result) { %>
+      <p class="alert-danger"><%= result %></p>
+      <% } %>
       <hr />
       <p class="create-account">
         <a href="/register">Create account</a>
