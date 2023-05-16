@@ -16,7 +16,6 @@ exports.getUserPlants = ({userId}) => {
 exports.getUserPlantByName = (userId, plantName)  =>  {
   return new Promise((resolve, reject) => {
     connection.query(userplantQueries.getUserPlants, [userId, plantName], (err, result, fields) => {
-      console.log(result);
       if (err) {
         reject(err);
       } else {
@@ -29,7 +28,6 @@ exports.getUserPlantByName = (userId, plantName)  =>  {
 exports.insertUserPlant = (NickName, {userId}, plantId) =>  {
   return new Promise((resolve, reject) => {
     connection.query(userplantQueries.insertUserPlant, [NickName, userId, plantId], (err, result, fields) => {
-      console.log(result);
       if (err) {
         reject(err);
       } else {
@@ -42,7 +40,6 @@ exports.insertUserPlant = (NickName, {userId}, plantId) =>  {
 exports.removeUserPlant = (userId, plantNickName) =>  {
     return new Promise((resolve, reject) => {
         connection.query(userplantQueries.removeUserPlant, [userId, plantNickName], (err, result, fields) => {
-          console.log(result);
           if (err) {
             reject(err);
           } else {

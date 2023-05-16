@@ -2,11 +2,12 @@ const plantcareQueries = require('../data-access/queries/plantcareQueries');
 const connection = require('../data-access/db').con;
 
 class PlantCare{
-    constructor({sunlightRequirement, waterRequirement, suitableRegion, suitableWeather, plantId}) {
+    constructor({sunlightRequirement, waterRequirement, suitableRegion, suitableWeather, plantEnvironment, plantId}) {
         this.sunlightRequirement = sunlightRequirement;
         this.waterRequirement = waterRequirement;
         this.suitableRegion = suitableRegion;
         this.suitableWeather = suitableWeather;
+        this.plantEnvironment = (plantEnvironment == 1)?true:false;
         this.plantId = plantId;
     }
 

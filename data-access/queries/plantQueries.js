@@ -1,10 +1,8 @@
-exports.getPlantByName  = `SELECT * FROM plant WHERE plantName like %?% OR scientificName like %?% OR otherName like %?%`;
+exports.getPlantByName  = `SELECT plantApiId, plantName, scientificName, otherName, plantImage, plantType FROM plant WHERE plantName LIKE ? OR scientificName LIKE ? OR otherName LIKE ?`;
 
-exports.getPlantById  = `SELECT * FROM plant WHERE plantId = ?`;
+exports.getPlantById  = `SELECT plantApiId, plantName, scientificName, otherName, plantImage, plantType FROM plant WHERE plantId = ?`;
 
-exports.getPlants  = `SELECT * FROM plant`;
-
-exports.getPlantCare = `SELECT * FROM plantcarerequirement WHERE plantId = ?`;
+exports.getPlants  = `SELECT plantApiId, plantName, scientificName, otherName, plantImage, plantType FROM plant`;
 
 exports.insertPlant = `INSERT INTO plant (plantApiId, plantName, scientificName, otherName, plantImage, plantType, categoryId) VALUES (?, ?, ?, ?, ?, ?, 1)` ;
 
