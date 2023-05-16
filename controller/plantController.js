@@ -34,15 +34,21 @@ exports.showDetails = (req, res) => {
     });
 }
 
-exports.testy = async (req, res) => {
+exports.addPlant = async (req, res) => {
+  var options = ['Aloe','Monsteria','String of hearts','Green one'];
+  const html = await ejs.renderFile(rootDir + '/views/Plants/addPlant.ejs',{options: options})
+  res.status(200).send(html)
+}
+
+exports.myPlants = async (req, res) => {
   const plantDataArray = getPlantDataStub()
-  const plantInfoBubbles = await ejs.renderFile(rootDir + '/views/plantTileInfoBubble.ejs', )
+  const plantInfoBubbles = await ejs.renderFile(rootDir + '/views/Plants/plantTileInfoBubble.ejs', )
   const plantTilePromises = []
   for(let i = 0; i < plantDataArray.length; i++){
-    plantTilePromises.push( ejs.renderFile(rootDir + '/views/plantTiles.ejs', { plantInfoBubbles: plantInfoBubbles, imageUrl: plantDataArray[i].imageUrl, nickName: plantDataArray[i].nickName } ) )
+    plantTilePromises.push( ejs.renderFile(rootDir + '/views/Plants/plantTiles.ejs', { plantInfoBubbles: plantInfoBubbles, imageUrl: plantDataArray[i].imageUrl, nickName: plantDataArray[i].nickName } ) )
   }
   const plantTiles = await Promise.all(plantTilePromises)
-  const html = await ejs.renderFile(rootDir + '/views/myPlants.ejs', {plantTiles})
+  const html = await ejs.renderFile(rootDir + '/views/Plants/myPlants.ejs', {plantTiles})
   res.status(200).send(html)
 }
 
