@@ -1,5 +1,18 @@
 var config = require('../config/plant-config');
 
+
+class Plant{
+    constructor({plantId, apiId, plantName, scientificName, otherName, plantImage, plantType}) {
+        this.plantId = plantId;
+        this.apiId = apiId;
+        this.plantName = plantName;
+        this.scientificName = scientificName;
+        this.otherName = otherName;
+        this.plantImage = plantImage;
+        this.plantType = plantType;
+    }
+}
+
 async function getPlantList(query) {
 
     const params = new URLSearchParams();
@@ -25,4 +38,4 @@ async function getPlantDetails(plantId = 1) {
     return await response.json();
 }
 
-module.exports = {getPlantList, getPlantDetails}
+module.exports = { Plant, getPlantList, getPlantDetails}
