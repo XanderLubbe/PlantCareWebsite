@@ -4,10 +4,10 @@ USE PlantDB;
 
 CREATE TABLE `AppUser` (
   `userId` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `passcode` longtext,
-  `city` longtext,
+  `username` varchar(50) DEFAULT NOT NULL,
+  `email` varchar(100) DEFAULT NOT NULL,
+  `passcode` longtext NOT NULL,
+  `city` longtext NOT NULL,
   `province` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`userId`)
 );
@@ -38,6 +38,7 @@ CREATE TABLE `PlantCareRequirement` (
   `suitableRegion` longtext,
   `suitableWeather` longtext,
   `plantId` int DEFAULT NULL,
+  `plantEnvironment` boolean,
   PRIMARY KEY (`plantCareId`),
   CONSTRAINT `fk_plantId` FOREIGN KEY (`plantId`) REFERENCES `Plant`(`plantId`)
 );
