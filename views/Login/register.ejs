@@ -32,9 +32,15 @@
           <label for="password">Password</label>
           <input type="password" id="password" name="password" required />
           <label for="city">City</label>
-          <input type="city" id="city" name="city" required />
+          <input type="city" id="city" name="city" required pattern="^\S+$" />
           <label for="province">Province</label>
-          <input type="province" id="province" name="province" required />
+          <input
+            type="province"
+            id="province"
+            name="province"
+            required
+            pattern="^\S+$"
+          />
           <button type="submit">Sign up</button>
         </form>
       </fieldset>
