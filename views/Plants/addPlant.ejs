@@ -1,27 +1,84 @@
-<link
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="../../public/images/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../public/images/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../public/images/favicon/favicon-16x16.png">
+        <link rel="manifest" href="../../public/images/favicon/site.webmanifest">
+        <title>Plant care</title>
+        <meta name="description" content="">
+        <link
 rel="stylesheet"
 type="text/css"
 href="/static/css/Plants/addPlant.css"
 />
-<section class="addPlant-section">
-    <h2>Enter your plant details below: </h2>
-    <form>
-
-        <label for="nickName">Nickname</label><br>
-        <input type="text" id="nickName" name="nickName" value=""><br>
-
-        <label for="scientificName">scientificName</label><br>
-        <input type="text" id="scientificName" name="scientificName" value=""><br>
-
-        <label for="nickName">Nickname</label><br>
-        <input type="text" id="nickName" name="nickName" value=""><br>
-
-        <label for="plantSpecies">Plant species</label><br>
-
-            <input type="text" id="searchInput" onkeyup="searchOptions()" placeholder="Search...">
-            <ul id="searchResults"></ul>
-
-        <button type="submit">Add plant</button><br>
-    </form>
-
-</section>
+    </head>
+    <body>
+        <main class="dashboard">
+            <aside class="sidebar flex-c">
+                <img 
+                    class="logo" 
+                    alt="Plant care logo" 
+                    src="../public/images/logo/Plant_Care.png"
+                >                
+                <hr>
+                <nav>
+                    <ul>
+                        <li> <img class="icon" alt="dashboard-icon" src="../public/images/icons/dashboard-icon.png" >
+                            <a href="/"> Dashboard</a>
+                        </li>
+                        <li> <img class="icon" alt="dashboard-icon" src="../public/images/icons/dashboard-icon.png" >
+                            <a href="/plant/list">List</a>
+                        </li>
+                        <li> <img class="icon" alt="dashboard-icon" src="../public/images/icons/dashboard-icon.png" >
+                            <a href="/plant/details">Details</a>
+                        </li>                                                
+                    </ul>                    
+                </nav>
+                <hr>
+                <p class="log-out">
+                    <img 
+                        class="icon" 
+                        alt="dashboard-icon" 
+                        src="../public/images/icons/dashboard-icon.png" 
+                    >
+                    <a href=""> Logout </a>
+                </p>
+            </aside>
+            <section class="content">
+                <section class="topbar flex flex-sb">
+                    <form class="search flex">
+                        <input type="text" id="search" name="search" placeholder=" Search ">
+                    </form>
+                    <p class="user flex">User Name 
+                        <img alt="user" class="user" src="../public/images/icons/user-icon(1).png"> 
+                    </p>            
+            </section>
+            <section class="addPlant-section">
+                <h2>Enter your plant details below: </h2>
+                <form>
+            
+                    <label for="nickName">Nickname</label><br>
+                    <input class="addPlantInput" type="text" id="nickName" name="nickName" value=""><br>
+            
+                    <label for="scientificName">scientificName</label><br>
+                    <input class="addPlantInput" type="text" id="scientificName" name="scientificName" value=""><br>
+            
+                    <label for="nickName">Nickname</label><br>
+                    <input class="addPlantInput" type="text" id="nickName" name="nickName" value=""><br>
+            
+                    <label for="plantSpecies">Plant species</label><br>
+            
+                        <input class="addPlantInput" type="text" id="searchInput" onkeyup="searchOptions()" placeholder="Search...">
+                        <ul id="searchResults"></ul>
+            
+                    <button type="submit">Add plant</button><br>
+                </form>
+            
+            </section>
+        </main>
+    </body>
+</html>
