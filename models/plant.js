@@ -1,5 +1,6 @@
 var config = require('../config/plant-config');
 const plantQueries = require('../data-access/queries/plantQueries');
+const {PlantCare} = require('./plantCare');
 const connection = require('../data-access/db').con;
 
 class Plant{
@@ -51,10 +52,16 @@ class Plant{
                     if (result.length != 0) {
                       plant = new Plant(result[0]);
                       plant.plantId = plantId;
+                      let plantCare = new PlantCare(plant);
+                      plantCare.getPlantCare(plantCare)
+                      .then((responseData) => {
+                        console.log(responseData);
+                        plant.plantCare = responseData
+                        resolve(plant);
+                      });
                     } else {
                       resolve(false);
                     }
-                    resolve(plant);
                 }
             });
         });
