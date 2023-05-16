@@ -4,9 +4,9 @@ const {PlantCare} = require('./plantCare');
 const connection = require('../data-access/db').con;
 
 class Plant{
-    constructor({plantId, apiId, plantName, scientificName, otherName, plantImage, plantType}) {
+    constructor({plantId, plantApiId, plantName, scientificName, otherName, plantImage, plantType}) {
         this.plantId = plantId;
-        this.apiId = apiId;
+        this.plantApiId = plantApiId;
         this.plantName = plantName;
         this.scientificName = scientificName;
         this.otherName = otherName;
@@ -85,9 +85,9 @@ class Plant{
         });
     }
     
-    async insertPlant({apiId, plantName, scientificName, otherName, plantImage, plantType}) {
+    async insertPlant({plantApiId, plantName, scientificName, otherName, plantImage, plantType}) {
         return new Promise((resolve, reject) => {
-            connection.query(plantQueries.insertPlant, [apiId, plantName, scientificName, otherName, plantImage, plantType] , (err, result, fields) => {
+            connection.query(plantQueries.insertPlant, [plantApiId, plantName, scientificName, otherName, plantImage, plantType] , (err, result, fields) => {
                 if (err) {
                     reject(err);
                 } else {
