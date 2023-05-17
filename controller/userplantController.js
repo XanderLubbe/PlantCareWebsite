@@ -9,66 +9,64 @@ const rootDir = path.dirname(__dirname);
 
 exports.index = (req, res) => {
     const user = req.session.user;
-    const userP = new UserPlant(user, []);
-    // const userP = new UserPlant(user, userP.getUserPlants(user).map(plant =>{
-    //     new Plant(plant);
-    //     plant.NickName = 
-    // } ));
-    console.log(req.session.user);
-    res.send(req.session);
-    res.render('Login/login.ejs', {result: ''});
+    UserPlant.getUserPlants(user)
+    .then(responseData => {
+        let userplants = [];
+        responseData.map((item, index) =>{
+                const getPlant = new Plant(item);
+                getPlant.getPlantById(getPlant)
+                .then(plantData =>{
+                    plantData.plantNickName = item.plantNickName;
+                    userplants.push(plantData);
+                    if (index === responseData.length - 1) {
+                        console.log(userplants);
+                        res.send(userplants);
+                    }
+                } )
+            });
+    })
+    .catch(error => {
+        console.error('Error retrieving plants:', error);
+        res.send(error);
+      });
 }
 
-// exports.postIndex = (req, res) => {
-//     const errorMessage = "Looks like you've been planted at the login screen. Try again!";
+exports.postAddPlant = (req, res) => {
+    const responseMessage = 'Successfully added!';
+    const errorMessage = 'Unferntunately failed adding plant!';
 
-//     const user = new User(req.body);
-//     user.validateUser(user).then(responseData => {
-//         console.log(responseData); 
-//         if (responseData.succeeded === true){
-//             res.render('dashboard.ejs', {user: responseData});
-//             req.session.user = responseData;
-//         }
-//         else {
-//             res.render('Login/login.ejs', {result: errorMessage});
-//         }
-//       })
-//       .catch(error => {
-//         console.error('Error registering user:', error);
-//         res.render('Login/login.ejs', {result: error});
-//       });
-// }
-
-// exports.getRegister = (req, res) => {
-//     res.render('Login/register.ejs', {result: ''});
-// }
-
-// exports.postRegister = (req, res) => {
-//     const responseMessage = 'Successfully registered!';
-//     const errorMessage = 'Unferntunately failed registering!';
-
-//     const user = new User(req.body);
-//     user.registerUser(user).then(responseData => {
-//         console.log(responseData);
-//         if (responseData === true){
-//             res.render('Login/login.ejs', {result: responseMessage});
-//         } else{
-//             res.render('Login/register.ejs', {result: errorMessage});
-//         }
+    const user = req.session.user;
+    UserPlant.insertUserPlant(req.body.NickName, user, req.body.plantId)
+    .then(responseData => {
+        if (responseData === true){
+            res.render('dashboard.ejs', {user: {username:responseMessage}});
+        } else{
+            res.render('dashboard.ejs', {user: {username:errorMessage}});
+        }
         
-//       })
-//       .catch(error => {
-//         console.error('Error registering user:', error);
-//         res.render('Login/register.ejs', {result: error});
-//       });
-// }
+      })
+    .catch(error => {
+        console.error('Error registering user:', error);
+        res.render('Login/register.ejs', {user: {username:error}});
+      });
+}
 
-// exports.dashboard = (req, res) =>{
-//     if (!req.session.user || !req.session.user.succeeded) {
-//         let errorMessage = "Oops, it looks like your login info didn't grow on us. Please try again.";
-//         res.render('Login/login.ejs', {result: errorMessage});
-//     }
-//     else{
-//         res.render('dashboard.ejs', {user: {name: "TBD"}});
-//     }
-// };
+exports.postRemovePlant = (req, res) => {
+    const responseMessage = 'Successfully removed!';
+    const errorMessage = 'Unferntunately failed removing plant!';
+
+    const user = req.session.user;
+    UserPlant.removeUserPlant(user, req.body.NickName)
+    .then(responseData => {
+        if (responseData === true){
+            res.render('dashboard.ejs', {user: {username:responseMessage}});
+        } else{
+            res.render('dashboard.ejs', {user: {username:errorMessage}});
+        }
+        
+      })
+    .catch(error => {
+        console.error('Error registering user:', error);
+        res.render('Login/register.ejs', {user: {username:error}});
+      });
+}

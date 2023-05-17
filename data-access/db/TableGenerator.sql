@@ -4,10 +4,10 @@ USE PlantDB;
 
 CREATE TABLE `AppUser` (
   `userId` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `passcode` longtext,
-  `city` longtext,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `passcode` longtext NOT NULL,
+  `city` longtext NOT NULL,
   `province` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`userId`)
 );
@@ -20,13 +20,13 @@ CREATE TABLE `PlantCategory` (
 
 CREATE TABLE `Plant` (
   `plantId` int NOT NULL AUTO_INCREMENT,
-  `plantApiId` int DEFAULT NULL,
+  `plantApiId` int NOT NULL,
   `plantName` longtext,
   `scientificName` longtext,
   `otherName` longtext,
   `plantImage` varchar(50) DEFAULT NULL,
   `plantType` varchar(100) DEFAULT NULL,
-  `categoryId` int DEFAULT NULL,
+  `categoryId` int NOT NULL,
   PRIMARY KEY (`plantId`),
   CONSTRAINT `fk_categoryId` FOREIGN KEY (`categoryId`) REFERENCES `PlantCategory`(`plantCategoryId`)
 );
@@ -37,7 +37,8 @@ CREATE TABLE `PlantCareRequirement` (
   `waterRequirement` longtext,
   `suitableRegion` longtext,
   `suitableWeather` longtext,
-  `plantId` int DEFAULT NULL,
+  `plantEnvironment` boolean,
+  `plantId` int NOT NULL,
   PRIMARY KEY (`plantCareId`),
   CONSTRAINT `fk_plantId` FOREIGN KEY (`plantId`) REFERENCES `Plant`(`plantId`)
 );
@@ -45,8 +46,8 @@ CREATE TABLE `PlantCareRequirement` (
 CREATE TABLE `UserPlantBridge` (
   `bridgeId` int NOT NULL AUTO_INCREMENT,
   `plantNickName` longtext,
-  `plantId` int DEFAULT NULL,
-  `userId` int DEFAULT NULL,
+  `plantId` int NOT NULL,
+  `userId` int NOT NULL,
   PRIMARY KEY (`bridgeId`),
   CONSTRAINT `fk_plantId_2` FOREIGN KEY (`plantId`) REFERENCES `Plant`(`plantId`),
   CONSTRAINT `fk_userId` FOREIGN KEY (`userId`) REFERENCES `AppUser`(`userId`)

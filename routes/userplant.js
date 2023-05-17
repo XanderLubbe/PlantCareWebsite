@@ -4,12 +4,8 @@ const UserPlantController = require('../controller/userplantController');
 
 router.get('/', UserPlantController.index);
 
-// router.post('/', UserController.postIndex);
+router.post('/add', UserPlantController.postAddPlant);
 
-// router.get('/register', UserController.getRegister);
-
-// router.post('/register', UserController.postRegister);
-
-// router.get('/dashboard', UserController.dashboard);
+router.post('/remove', UserPlantController.postRemovePlant);
 
 module.exports = router;
