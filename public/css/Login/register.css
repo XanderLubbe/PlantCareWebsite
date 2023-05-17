@@ -80,3 +80,37 @@ legend {
   margin-bottom: 1em;
   padding-left: 0.5em;
 }
+
+/* Media queries for smaller screens */
+@media only screen and (max-width: 600px) {
+  main {
+    padding: 1em;
+  }
+
+  form {
+    margin-top: 1em;
+  }
+
+  input {
+    font-size: 0.9em;
+  }
+
+  button {
+    font-size: 0.9em;
+  }
+
+  .create-account {
+    font-size: 0.75em;
+  }
+}
+
+/* Media queries for larger screens */
+@media only screen and (min-width: 601px) {
+  main {
+    max-width: 40em;
+  }
+
+  input {
+    width: 100%;
+  }
+}

@@ -4,9 +4,9 @@ const PlantController = require('../controller/plantController');
 
 router.get('/', PlantController.index);
 
-router.get('/list/:query', PlantController.showList);
+router.get('/list', PlantController.getPlants);
 
-router.get('/details/:id', PlantController.showDetails);
+router.get('/search/:query', PlantController.getByName);
 
 router.get('/myPlants', PlantController.myPlants);
 
