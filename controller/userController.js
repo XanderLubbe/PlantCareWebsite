@@ -64,6 +64,7 @@ exports.dashboard = (req, res) => {
       "Oops, it looks like your login info didn't grow on us. Please try again.";
     res.render("Login/login.ejs", { result: errorMessage });
   } else {
-    res.render("dashboard.ejs", { user: { name: "TBD" } });
+    const user = req.session.user;
+    res.render("dashboard.ejs", { user: user });
   }
 };
