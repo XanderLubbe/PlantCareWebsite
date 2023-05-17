@@ -18,8 +18,8 @@ exports.postIndex = (req, res) => {
     .validateUser(user)
     .then((responseData) => {
       if (responseData.succeeded === true) {
-        res.render("dashboard.ejs", { user: responseData });
         req.session.user = responseData;
+        res.redirect('/dashboard');
       } else {
         res.render("Login/login.ejs", { result: errorMessage });
       }
@@ -64,7 +64,7 @@ exports.dashboard = (req, res) => {
       "Oops, it looks like your login info didn't grow on us. Please try again.";
     res.render("Login/login.ejs", { result: errorMessage });
   } else {
-    console.log(req.session.user);
-    res.render("dashboard.ejs", { user: { name: "TBD" } });
+    const user = req.session.user;
+    res.render("dashboard.ejs", { user: user });
   }
 };
