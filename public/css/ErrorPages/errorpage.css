@@ -3,6 +3,15 @@
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: #fff;
+}
+
 html,
 body {
   font-family: "Black Ops One", cursive;
