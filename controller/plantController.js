@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const plantAPI = require('../data-access/plantModel');
 const ejs = require('ejs');
 const {Plant} = require('../models/plant');
 
