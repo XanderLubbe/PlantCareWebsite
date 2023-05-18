@@ -8,4 +8,8 @@ router.get('/list', PlantController.getPlants);
 
 router.get('/search/:query', PlantController.getByName);
 
+router.get('/myPlants', PlantController.myPlants);
+
+router.get('/addPlant', PlantController.addPlant);
+
 module.exports = router;
