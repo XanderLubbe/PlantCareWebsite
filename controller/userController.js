@@ -1,9 +1,13 @@
+const express = require("express");
+const router = express.Router();
+const path = require("path");
 const User = require("../models/user");
 
+const rootDir = path.dirname(__dirname);
+
 exports.getIndex = (req, res) => {
-  let message = req.session.message;
   req.session.user = { succeeded: false };
-  res.render("Login/login.ejs", { result: message });
+  res.render("Login/login.ejs", { result: "" });
 };
 
 exports.postIndex = (req, res) => {
@@ -30,6 +34,9 @@ exports.getRegister = (req, res) => {
   res.render("Login/register.ejs", { result: "" });
 };
 
+exports.errors = (req, res) => {
+  res.render("ErrorPages/Construction.ejs", { result: "" });
+};
 
 exports.postRegister = (req, res) => {
   const responseMessage = "Successfully registered!";
@@ -40,8 +47,7 @@ exports.postRegister = (req, res) => {
     .registerUser(user)
     .then((responseData) => {
       if (responseData === true) {
-        req.session.message = responseMessage;
-        res.redirect("/");
+        res.render("Login/login.ejs", { result: responseMessage });
       } else {
         res.render("Login/register.ejs", { result: errorMessage });
       }
@@ -52,11 +58,13 @@ exports.postRegister = (req, res) => {
     });
 };
 
-exports.errors = (req, res) => {
-  res.render("ErrorPages/Construction.ejs", { result: "" });
-};
-
 exports.dashboard = (req, res) => {
-  const user = req.session.user;
-  res.render("dashboard.ejs", { user: user });
+  if (!req.session.user || !req.session.user.succeeded) {
+    let errorMessage =
+      "Oops, it looks like your login info didn't grow on us. Please try again.";
+    res.render("Login/login.ejs", { result: errorMessage });
+  } else {
+    const user = req.session.user;
+    res.render("dashboard.ejs", { user: user });
+  }
 };
