@@ -1,11 +1,5 @@
-const express = require('express');
-const router = express.Router();
-const path = require('path');
 const {Plant} = require('../models/plant');
 const UserPlant = require('../models/userplant');
-const { log } = require('console');
-
-const rootDir = path.dirname(__dirname);
 
 exports.index = (req, res) => {
     const user = req.session.user;
@@ -19,7 +13,6 @@ exports.index = (req, res) => {
                     plantData.plantNickName = item.plantNickName;
                     userplants.push(plantData);
                     if (index === responseData.length - 1) {
-                        console.log(userplants);
                         res.send(userplants);
                     }
                 } )
