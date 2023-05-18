@@ -1,34 +1,32 @@
-const express = require('express');
-const router = express.Router();
-const path = require('path');
-const plantAPI = require('../data-access/plantModel');
-
-const rootDir = path.dirname(__dirname);
+const {Plant} = require('../models/plant');
 
 exports.index = (req, res) => {
-    res.sendFile(rootDir + '/views/index.html');
+    req.session.message = responseMessage;
+    res.redirect("/");
 }
 
-exports.showList = (req, res) => {
-    plantAPI.getPlantList(req.params.query)
-    .then(responseData => {
-      console.log(responseData.data);
-      res.send(responseData.data);
-    })
-    .catch(error => {
-      console.error('Error retrieving species list:', error);
-      res.status(500).send('An error occurred while retrieving the species list');
-    });
+exports.getPlants = (req, res) => {
+  plant = new Plant({});
+  plant.getPlantList()
+  .then(responseData => {
+    console.log(responseData);
+    res.send(responseData);
+  })
+  .catch(error => {
+    console.error('Error retrieving species list:', error);
+    res.status(500).send('An error occurred while retrieving the species list');
+  });
 }
 
-exports.showDetails = (req, res) => {
-    plantAPI.getPlantDetails(req.params.id)
+exports.getByName = (req, res) => {
+    plant = new Plant({});
+    plant.getPlantByName(req.params.query)
     .then(responseData => {
       console.log(responseData);
       res.send(responseData);
     })
     .catch(error => {
-      console.error('Error retrieving species details:', error);
-      res.status(500).send('An error occurred while retrieving the species details');
+      console.error('Error retrieving species list:', error);
+      res.status(500).send('An error occurred while retrieving the species list');
     });
 }

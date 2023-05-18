@@ -1,64 +1,54 @@
-USE master
-
-IF EXISTS(select * from sys.databases where name='PlantDB')
-DROP DATABASE PlantDB;
-
+DROP DATABASE IF EXISTS PlantDB;
 CREATE DATABASE PlantDB;
-GO
-
 USE PlantDB;
 
-CREATE TABLE [AppUser](
-  [userId] integer PRIMARY KEY IDENTITY(1, 1),
-  [username] varchar(50),
-  [firstname] varchar(max),
-  [surname] varchar(max),
-  [email] varchar(100),
-  [password] varchar(max)
+CREATE TABLE `AppUser` (
+  `userId` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `passcode` longtext NOT NULL,
+  `city` longtext NOT NULL,
+  `province` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`userId`)
 );
 
-CREATE TABLE [Address](
-  [addressId] integer PRIMARY KEY IDENTITY(1, 1),
-  [province] varchar(50),
-  [city] varchar(max),
-  [userId] integer
+CREATE TABLE `PlantCategory` (
+  `plantCategoryId` int NOT NULL AUTO_INCREMENT,
+  `categoryName` longtext,
+  PRIMARY KEY (`plantCategoryId`)
 );
 
-CREATE TABLE [PlantCategory](
-  [plantCategoryId] integer PRIMARY KEY IDENTITY(1, 1),
-  [categoryName] varchar(max),
+CREATE TABLE `Plant` (
+  `plantId` int NOT NULL AUTO_INCREMENT,
+  `plantApiId` int NOT NULL,
+  `plantName` longtext,
+  `scientificName` longtext,
+  `otherName` longtext,
+  `plantImage` varchar(50) DEFAULT NULL,
+  `plantType` varchar(100) DEFAULT NULL,
+  `categoryId` int NOT NULL,
+  PRIMARY KEY (`plantId`),
+  CONSTRAINT `fk_categoryId` FOREIGN KEY (`categoryId`) REFERENCES `PlantCategory`(`plantCategoryId`)
 );
 
-CREATE TABLE [Plant](
-  [plantId] integer PRIMARY KEY IDENTITY(1, 1),
-  [plantApiId] integer,
-  [plantName] varchar(max),
-  [scientificName] varchar(max),
-  [otherName] varchar(max),
-  [plantImage] varchar(50),
-  [plantType] varchar(100),
-  [categoryId] integer
+CREATE TABLE `PlantCareRequirement` (
+  `plantCareId` int NOT NULL AUTO_INCREMENT,
+  `sunlightRequirement` longtext,
+  `waterRequirement` longtext,
+  `suitableRegion` longtext,
+  `suitableWeather` longtext,
+  `plantEnvironment` boolean,
+  `plantId` int NOT NULL,
+  PRIMARY KEY (`plantCareId`),
+  CONSTRAINT `fk_plantId` FOREIGN KEY (`plantId`) REFERENCES `Plant`(`plantId`)
 );
 
-CREATE TABLE [PlantCareRequirement](
-  [plantCareId] integer PRIMARY KEY IDENTITY(1, 1),
-  [sunlightRequirement] varchar(max),
-  [waterRequirement] varchar(max),
-  [suitableRegion] varchar(max),
-  [suitableWeather] varchar(max),
-  [plantId] integer,
+CREATE TABLE `UserPlantBridge` (
+  `bridgeId` int NOT NULL AUTO_INCREMENT,
+  `plantNickName` longtext,
+  `plantId` int NOT NULL,
+  `userId` int NOT NULL,
+  PRIMARY KEY (`bridgeId`),
+  CONSTRAINT `fk_plantId_2` FOREIGN KEY (`plantId`) REFERENCES `Plant`(`plantId`),
+  CONSTRAINT `fk_userId` FOREIGN KEY (`userId`) REFERENCES `AppUser`(`userId`)
 );
-
-CREATE TABLE [UserPlantBridge](
-  [bridgeId] integer PRIMARY KEY IDENTITY(1, 1),
-  [plantNickName] varchar(max),
-  [plantId] integer,
-  [userId] integer
-);
-
-
-ALTER TABLE [Address] ADD FOREIGN KEY ([userId]) REFERENCES [AppUser](userId)
-ALTER TABLE [Plant] ADD FOREIGN KEY ([categoryId]) REFERENCES [PlantCategory](plantCategoryId)
-ALTER TABLE [PlantCareRequirement] ADD FOREIGN KEY ([plantId]) REFERENCES [Plant](plantId)
-ALTER TABLE [UserPlantBridge] ADD FOREIGN KEY ([plantId]) REFERENCES [Plant](plantId)
-ALTER TABLE [UserPlantBridge] ADD FOREIGN KEY ([userId]) REFERENCES [AppUser](userId)
