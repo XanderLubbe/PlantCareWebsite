@@ -13,7 +13,6 @@ router.get("/register", UserController.getRegister);
 router.post("/register", UserController.postRegister);
 
 router.get("/dashboard", authController.auth, UserController.dashboard);
-
 router.get("/errors", UserController.errors);
 
 module.exports = router;

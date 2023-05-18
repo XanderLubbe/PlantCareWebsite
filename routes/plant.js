@@ -9,4 +9,8 @@ router.get('/list', authController.auth, PlantController.getPlants);
 
 router.get('/search/:query', authController.auth, PlantController.getByName);
 
+router.get('/myPlants', PlantController.myPlants);
+
+router.get('/addPlant', PlantController.addPlant);
+
 module.exports = router;

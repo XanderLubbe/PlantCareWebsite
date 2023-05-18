@@ -1,4 +1,9 @@
+const express = require("express");
+const router = express.Router();
+const path = require("path");
 const User = require("../models/user");
+
+const rootDir = path.dirname(__dirname);
 
 exports.getIndex = (req, res) => {
   let message = req.session.message;
@@ -30,6 +35,9 @@ exports.getRegister = (req, res) => {
   res.render("Login/register.ejs", { result: "" });
 };
 
+exports.errors = (req, res) => {
+  res.render("ErrorPages/Construction.ejs", { result: "" });
+};
 
 exports.postRegister = (req, res) => {
   const responseMessage = "Successfully registered!";
