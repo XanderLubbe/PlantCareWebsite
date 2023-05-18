@@ -7,7 +7,8 @@ const {Plant} = require('../models/plant');
 const rootDir = path.dirname(__dirname);
 
 exports.index = (req, res) => {
-    res.sendFile(rootDir + '/views/index.html');
+  req.session.message = responseMessage;
+  res.redirect("/");
 }
 
 exports.getPlants = (req, res) => {

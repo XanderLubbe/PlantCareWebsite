@@ -6,6 +6,7 @@ const plantRouter = require('./routes/plant');
 const userRouter = require('./routes/user');
 const userplantRouter = require('./routes/userplant');
 const weatherRouter = require('./routes/weather');
+const errorRouter = require('./routes/errors');
 
 const db = require('./data-access/db');
 
@@ -22,6 +23,7 @@ app.use('/', userRouter)
 app.use('/plant', plantRouter)
 app.use('/userplant', userplantRouter)
 app.use('/weather', weatherRouter)
+app.use('*', errorRouter)
 
 app.listen(config.port, () => {
   db.connect();
