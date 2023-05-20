@@ -7,13 +7,13 @@
 /* body */
 
 body {
+  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-content: center;
   height: 100vh;
   align-items: center;
-
   font-family: Arial, sans-serif;
   overflow: hidden;
 }
@@ -29,7 +29,8 @@ footer img {
 header ,
 footer {
   width: 100vw;
-  height: 10vh;
+  height: auto;
+  min-width: 10vh;
 }
 
 header h1 {
@@ -41,6 +42,9 @@ header h1 {
 main{
   display: flex;  
   align-self: center;
+  width: 50vw;
+  max-width: 30em;
+  min-width: 20em;
 }
 
 /* fieldset */
@@ -68,9 +72,6 @@ form {
 }
 
 
-form >input {
-  width: 90%;
-}
 form >button {
   width: 100%;
 }
@@ -84,7 +85,7 @@ label {
 input {
   border: 0.0625em solid var(--input-border-color);
   border-radius: 0.3125em;
-  padding: 0.75em;
+  height: 2em;
   margin-bottom: 1em;
 }
 input:focus{
