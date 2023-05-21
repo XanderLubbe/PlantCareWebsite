@@ -1,22 +1,16 @@
-const express = require("express");
-const router = express.Router();
-const path = require("path");
-const User = require("../models/user");
+const userModel = require("../models/user");
 
-const rootDir = path.dirname(__dirname);
-
-exports.getIndex = (req, res) => {
+exports.getLogin = (req, res) => {
   let message = req.session.message;
   req.session.user = { succeeded: false };
   res.render("Login/login.ejs", { result: message });
 };
 
-exports.postIndex = (req, res) => {
+exports.postLogin = (req, res) => {
   const errorMessage = "Username or Password is incorrect";
 
-  const user = new User(req.body);
-  user
-    .validateUser(user)
+  userModel
+    .validateUser(req.body)
     .then((responseData) => {
       if (responseData.succeeded === true) {
         req.session.user = responseData;
@@ -35,30 +29,49 @@ exports.getRegister = (req, res) => {
   res.render("Login/register.ejs", { result: "" });
 };
 
-exports.errors = (req, res) => {
-  res.render("ErrorPages/Construction.ejs", { result: "" });
-};
-
 exports.postRegister = (req, res) => {
   const responseMessage = "Successfully registered!";
   const errorMessage = "Unferntunately failed registering!";
-
-  const user = new User(req.body);
-  user
-    .registerUser(user)
-    .then((responseData) => {
-      if (responseData === true) {
-        req.session.message = responseMessage;
-        res.redirect("/");
-      } else {
-        res.render("Login/register.ejs", { result: errorMessage });
-      }
-    })
-    .catch((error) => {
-      console.error("Error registering user:", error);
-      res.render("Login/register.ejs", { result: error });
-    });
+  
+  userModel
+  .registerUser(req.body)
+  .then((responseData) => {
+    if (responseData === true) {
+      req.session.message = responseMessage;
+      res.redirect("/");
+    } else {
+      res.render("Login/register.ejs", { result: errorMessage });
+    }
+  })
+  .catch((error) => {
+    console.error("Error registering user:", error);
+    res.render("Login/register.ejs", { result: error });
+  });
 };
+
+// exports.getProfile = (req, res) => {
+//   res.render("profile.ejs");
+// };
+
+// exports.postProfile = (req, res) => {
+//   const responseMessage = "Successfully changed info!";
+//   const errorMessage = "Unferntunately failed to change info!";
+  
+//   userModel
+//   .updateUser(req.body)
+//   .then((responseData) => {
+//     if (responseData === true) {
+//       req.session.message = responseMessage;
+//       res.redirect("/");
+//     } else {
+//       res.render("Login/register.ejs", { result: errorMessage });
+//     }
+//   })
+//   .catch((error) => {
+//     console.error("Error registering user:", error);
+//     res.render("Login/register.ejs", { result: error });
+//   });
+// };
 
 exports.errors = (req, res) => {
   res.render("ErrorPages/Construction.ejs", { result: "" });
@@ -66,5 +79,6 @@ exports.errors = (req, res) => {
 
 exports.dashboard = (req, res) => {
   const user = req.session.user;
+  console.log(user);
   res.render("dashboard.ejs", { user: user });
 };
