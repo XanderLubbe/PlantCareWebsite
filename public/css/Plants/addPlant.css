@@ -6,9 +6,34 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
   }
-  .addPlantInput {
-    
+  .addPlant-form {
+    margin: 8px;
+    padding: 8px;
   }
+  .select-plant-name, .addPlant-searchBox, .addPlant-name-input {
+    border-radius: 16px;
+    padding: 4px;
+    margin-bottom: 8px;
+
+  }
+  .addPlant-fieldset {
+    padding: 8px;
+  }
+
+  .addPlant-button {
+    border-radius: 16px;
+    padding: 8px;
+  }
+  .addPlant-button[type="submit"]:disabled{
+    background-color: #dddddd;
+    cursor: not-allowed;
+    margin-top: 8px;  
+}
+.addPlant-button[type="submit"]:enabled{
+  background-color: #FBF2E7;
+  margin-top: 8px;  
+}
+
   :root{
     --main-bg-color: #f2f2f2;
     --aside-bg-color: #ffffff;

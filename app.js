@@ -8,9 +8,7 @@ const userplantRouter = require('./routes/userplant');
 const weatherRouter = require('./routes/weather');
 const errorRouter = require('./routes/errors');
 
-const db = require('./data-access/db');
-
-var config = require('./config/config.js');
+const config = require('./config/config.js');
 
 app.set('view engine','ejs');
 app.set('views', path.join(__dirname, 'views')); 
@@ -26,8 +24,6 @@ app.use('/weather', weatherRouter)
 app.use('*', errorRouter)
 
 app.listen(config.port, () => {
-  db.connect();
-  console.log(config.port);
   console.log(`Server started successfully.\nApp listening at http://localhost:${config.port}`);
 })
 

@@ -9,6 +9,7 @@ CREATE TABLE `AppUser` (
   `passcode` longtext NOT NULL,
   `city` longtext NOT NULL,
   `province` varchar(50) DEFAULT NULL,
+  UNIQUE (`username`),
   PRIMARY KEY (`userId`)
 );
 
