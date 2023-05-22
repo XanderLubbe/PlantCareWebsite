@@ -1,65 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicon/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/static/images/favicon/site.webmanifest">
-        <title>Plant care</title>
-        <meta name="description" content="">
-        <link rel="stylesheet" href="/static/css/dashboard/dashboard.css">
-    </head>
-    <body>
-        <main class="dashboard">
-            <aside class="sidebar flex-c">
-                <img 
-                    class="logo" 
-                    alt="Plant care logo" 
-                    src="/static/images/logo/Plant_Care.png"
-                >                
-                <hr>
-                <nav>
-                    <ul>
-                        <li> <img class="icon" alt="dashboard-icon" src="/static/images/icons/dashboard-icon.png" >
-                            <a href="/"> Dashboard</a>
-                        </li>
-                        <li> <img class="icon" alt="dashboard-icon" src="/static/images/icons/myplant-icon.png" >
-                            <a href="/plant/list">My Plants</a>
-                        </li>
-                        <li> <img class="icon" alt="dashboard-icon" src="/static/images/icons/about-icon.png" >
-                            <a href="/plant/details">About</a>
-                        </li>                                                
-                    </ul>                    
-                </nav>
-                <hr>
-                <span class="log-out">
-                    <img 
-                        class="icon" 
-                        alt="logout-icon" 
-                        src="/static/images/icons/logout-icon.png" 
-                    >
-                    <a class="log-out" href=""> Logout </a>
-                </span>
-            </aside>
-            <section class="content">
-                <section class="topbar flex-wrap flex-sb">
-                    <form class="search flex">
-                        <input type="text" id="search" name="search" placeholder=" Search ">
-                    </form>
-                    <p class="user flex"><%= user.username %>!
-                        <img alt="user" class="user" src="/static/images/icons/user-icon(1).png"> 
-                    </p>  
-                </section>
-                <section>
-                    <h1> Juan Test buttons </h1>
-                    <a href="/plant/list">List</a>
-                    <a href="/plant/search">Details</a>
-                    <a href="/userplant">UserPlant</a>
-                    <a href="/weather">Weather</a>  
-                </section>                  
-            </section>
-        </main>
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/images/favicon/site.webmanifest">
+    <title>Plant care</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/static/css/dashboard/dashboard.css">
+  </head>
+  <body>
+    <aside id="sidebar" class="sidebar">
+      <img 
+        class="logo" 
+        alt="Plant care logo" 
+        src="/static/images/logo/Plant_Care.png"
+      >    
+      <h1>Plant Care</h1>            
+      <hr>
+      <nav>
+        <ul>
+          <li>
+            <a href="/dashboard">
+              <img 
+                class="icon" 
+                alt="dashboard-icon"
+                src="/static/images/icons/dashboard-icon.png"
+                href="/dashboard"
+              >
+            </a>            
+            <a id="dashIcon" href="/dashboard">Dashboard</a>
+          </li>
+          <li>
+            <a href="/plant/list">
+              <img 
+                class="icon" 
+                alt="myplant-icon" 
+                src="/static/images/icons/myplant-icon.png"              
+              >
+            </a>            
+            <a id="myPlantIcon" href="/plant/list">My Plants</a>
+          </li>
+          <li>
+            <a href="/plant/details">
+              <img 
+              class="icon" 
+              alt="about-icon" 
+              src="/static/images/icons/about-icon.png" 
+              href="/plant/details"
+              >
+            </a>            
+            <a id="aboutIcon" href="/plant/details">About</a>
+          </li>
+          <li>
+            <a href="/error">
+              <img
+                class="icon"
+                alt="logout-icon"
+                src="/static/images/icons/logout-icon.png" 
+              >
+            </a>            
+            <a id="logOutIcon" class="log-out" href="/error"> Logout </a>
+          </li>                                            
+        </ul>                    
+      </nav>
+    </aside>
+    <section class="content">
+      <section class="topbar">
+        <form class="search">
+          <input type="text" id="search" name="search" placeholder=" Search ">
+        </form>
+        <p class="user">                    
+          Welcome <%= user.username %>!
+          <img alt="user" class="user" src="/static/images/icons/user-icon(1).png"> 
+        </p>  
+      </section>
+      <section>
+        <h1> Juan Test buttons </h1>
+        <a href="/plant/list">List</a>
+        <a href="/plant/search">Details</a>
+        <a href="/userplant">UserPlant</a>
+        <a href="/weather">Weather</a>  
+      </section>                  
+    </section>
+    <script src="/static/js/Dashboard/dashboard.js" async defer></script>
+  </body>
+
+  
