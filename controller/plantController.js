@@ -1,19 +1,11 @@
-const express = require('express');
-const router = express.Router();
 const path = require('path');
 const ejs = require('ejs');
-const {Plant} = require('../models/plant');
+const plantModel = require('../models/plant');
 
 const rootDir = path.dirname(__dirname);
 
-exports.index = (req, res) => {
-  req.session.message = responseMessage;
-  res.redirect("/");
-}
-
 exports.getPlants = (req, res) => {
-  plant = new Plant({});
-  plant.getPlantList()
+  plantModel.getPlantList()
   .then(responseData => {
     console.log(responseData);
     res.send(responseData);
@@ -25,16 +17,15 @@ exports.getPlants = (req, res) => {
 }
 
 exports.getByName = (req, res) => {
-    plant = new Plant({});
-    plant.getPlantByName(req.params.query)
-    .then(responseData => {
-      console.log(responseData);
-      res.send(responseData);
-    })
-    .catch(error => {
-      console.error('Error retrieving species list:', error);
-      res.status(500).send('An error occurred while retrieving the species list');
-    });
+  plantModel.getPlantByName(req.params.name)
+  .then(responseData => {
+    console.log(responseData);
+    res.send(responseData);
+  })
+  .catch(error => {
+    console.error('Error retrieving species by name:', error);
+    res.status(500).send('An error occurred while retrieving the species by name');
+  });
 }
 
 exports.addPlant = async (req, res) => {

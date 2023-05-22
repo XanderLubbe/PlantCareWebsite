@@ -1,34 +1,16 @@
-const express = require('express');
-const router = express.Router();
-const path = require('path');
-const {Plant} = require('../models/plant');
-const UserPlant = require('../models/userplant');
-const { log } = require('console');
+const userplantsModel = require('../models/userplant');
 
-const rootDir = path.dirname(__dirname);
-
-exports.index = (req, res) => {
+exports.getUserPlants = (req, res) => {
     const user = req.session.user;
-    UserPlant.getUserPlants(user)
+    userplantsModel.getUserPlants(user)
     .then(responseData => {
-        let userplants = [];
-        responseData.map((item, index) =>{
-                const getPlant = new Plant(item);
-                getPlant.getPlantById(getPlant)
-                .then(plantData =>{
-                    plantData.plantNickName = item.plantNickName;
-                    userplants.push(plantData);
-                    if (index === responseData.length - 1) {
-                        console.log(userplants);
-                        res.send(userplants);
-                    }
-                } )
-            });
+        console.log(responseData);
+        res.send(responseData);
     })
     .catch(error => {
-        console.error('Error retrieving plants:', error);
-        res.send(error);
-      });
+      console.error('Error retrieving user\'s plants:', error);
+      res.status(500).send('An error occurred while retrieving user\'s plants');
+    });
 }
 
 exports.postAddPlant = (req, res) => {
@@ -36,7 +18,7 @@ exports.postAddPlant = (req, res) => {
     const errorMessage = 'Unferntunately failed adding plant!';
 
     const user = req.session.user;
-    UserPlant.insertUserPlant(req.body.NickName, user, req.body.plantId)
+    userplantsModel.insertUserPlant(req.body.NickName, user, req.body.plantId)
     .then(responseData => {
         if (responseData === true){
             res.render('dashboard.ejs', {user: {username:responseMessage}});
@@ -56,7 +38,7 @@ exports.postRemovePlant = (req, res) => {
     const errorMessage = 'Unferntunately failed removing plant!';
 
     const user = req.session.user;
-    UserPlant.removeUserPlant(user, req.body.NickName)
+    userplantsModel.removeUserPlant(user, req.body.NickName)
     .then(responseData => {
         if (responseData === true){
             res.render('dashboard.ejs', {user: {username:responseMessage}});
