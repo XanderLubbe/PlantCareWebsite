@@ -2,13 +2,13 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="height=device-height width=device-width, initial-scale=1" />
     <title>Sign in</title>
     <link rel="stylesheet" type="text/css" href="/static/css/Login/login.css" />
   </head>
   <body>
     <header>
-      <img src="/static/images/Login/Header_01.png" width="100%" />
+      <img src="/static/images/Login/Header_01.png"/>
       <!-- <h1><%= result %></h1> -->
     </header>
     <main>
@@ -25,22 +25,25 @@
           />
           <label for="password">Password</label>
           <input type="password" id="password" name="password" required />
-          <button type="submit">Sign in</button>
-        </form>
+          <button type="submit">Sign in</button>          
+        </form>   
+            
       </fieldset>
-      <p class="forgot-password">
-        <a href="/errors">Forgot password?</a>
-      </p>
-      <% if (result) { %>
-      <p class="alert-danger"><%= result %></p>
-      <% } %>
-      <hr />
-      <p class="create-account">
-        <a href="/register">Create account</a>
-      </p>
+      <span class="link-container">
+        <p class="forgot-password">
+          <a href="/errors">Forgot password?</a>
+        </p>
+        <% if (result) { %>
+        <p class="alert-danger"><%= result %></p>
+        <% } %>
+        <p class="create-account">
+          <a href="/register">Create account</a>
+        </p>
+      </span>   
+          
     </main>
     <footer>
-      <img src="/static/images//Login/Footer_Image_01.png" width="100%" />
+      <img src="/static/images/Login/Footer_Image_01.png" />
     </footer>
   </body>
 </html>
