@@ -29,8 +29,7 @@ exports.getByName = (req, res) => {
 }
 
 exports.addPlant = async (req, res) => {
-  var options = ['Aloe','Monsteria','String of hearts','Green one'];
-  const html = await ejs.renderFile(rootDir + '/views/Plants/addPlant.ejs',{options: options})
+  const html = await ejs.renderFile(rootDir + '/views/Plants/addPlant.ejs')
   res.status(200).send(html)
 }
 
@@ -47,8 +46,6 @@ exports.myPlants = async (req, res) => {
 }
 
 // stub
-// (plantApiId, plantName, scientificName, otherName, plantImage, plantType, categoryId) values(1, 'European Silver Fir', 'Abies Alba','Common Silver Fir', 'img1.png', 'tree',1) 
-
 function getPlantDataStub() {
   return [
     {
