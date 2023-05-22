@@ -1,15 +1,16 @@
 <script>
+
     var myValue = ''
     let searchResults = []
+    let dataArray = []
     async function searchOptions() {
         var searchQuery = document.getElementById("searchInput").value;
         if (searchQuery.length >= 3) {
             fetchOptions(searchQuery).then(
                 (response) => {
-                    console.log(response[0])
                     searchResults = response
-                    // myValue = response.value
-                    console.log(JSON.stringify(searchResults) + "This is the second search result")
+                    dataArray = JSON.parse(JSON.stringify(searchResults));
+                    populateHTML(dataArray);
                 }
             )
         }
@@ -20,7 +21,39 @@
                 return response.json()
             })
     }
+    async function populateHTML(data) {
+        const selector = document.getElementById("selectPlantName")
+        selector.innerHTML = '';
+        for (let i = 0; i < data.length; i++) {
+            const plantName = (data[i].plantName != null ? data[i].plantName : "")
+            const scientificName = (data[i].scientificName != null ? data[i].scientificName : "")
+            const otherName = (data[i].otherName != null ? data[i].otherName : "")
+            const plantId = data[i].plantId
 
+            selector.innerHTML += `<option plant-id="${plantId}" >
+                ${plantName} | ${scientificName} | ${otherName}
+                </option>`
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const nickNameInput = document.getElementById('nickName');
+        const searchInput = document.getElementById('searchInput');
+        const selectPlantName = document.getElementById('selectPlantName');
+        const addPlantButton = document.getElementById('addPlantButton');
+
+        function checkFormFields() {
+            if (nickNameInput.value && (searchInput.value || selectPlantName.value)) {
+                addPlantButton.removeAttribute('disabled');
+            } else {
+                addPlantButton.setAttribute('disabled', true);
+            }
+        }
+
+        nickNameInput.addEventListener('input', checkFormFields);
+        searchInput.addEventListener('input', checkFormFields);
+        selectPlantName.addEventListener('change', checkFormFields);
+    })
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,24 +104,27 @@
                     <img alt="user" class="user" src="/static/images/icons/user-icon(1).png">
                 </p>
             </section>
+            <!-- add plant section  -->
             <section class="addPlant-section">
-                <h2>Enter your plant details below: </h2>
-                <!-- check action -->
-                <form action="/addPlant" method="POST">
-                    <h3>Give your new plant a cute name:</h3>
-                    <label for="nickName">Name</label><br>
-                    <input class="addPlantInput" type="text" id="nickName" name="nickName" value=""><br>
+                <h2>Enter your plant details below </h2>
+                <form class="addPlant-form" action="/addPlant" method="POST">
+                    <fieldset class="addPlant-fieldset">
+                        <legend>Give your new plant a cute name </legend>
+                        <input class="addPlant-name-input" type="text" id="nickName" name="nickName" value=""><br>
+                    </fieldset>
+                    <br>
 
-                    <label for="plantSpecies">Plant species</label><br>
+                    <fieldset class="addPlant-fieldset">
+                        <legend>Search for your plant below </legend>
+                        <input class="addPlant-searchBox" type="text" id="searchInput" onkeyup="searchOptions()"
+                            placeholder="Search"><br>
+                        <select class="select-plant-name" id="selectPlantName">
+                            <option value="" disabled selected>Please search above</option>
+                        </select><br>
+                    </fieldset>
 
-                    <input class="addPlantSearchBox" type="text" id="searchInput" onkeyup="searchOptions()"
-                        placeholder="Search...">
-                    <ul id="searchResults"></ul>
-
-                    <button type="submit">Add plant</button><br>
+                    <button class="addPlant-button" id="addPlantButton" type="submit" disabled>Add plant</button><br>
                 </form>
-
-
             </section>
     </main>
 </body>
