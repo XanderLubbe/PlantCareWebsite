@@ -134,7 +134,7 @@ h1{
   display: flex;
   width: 100%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 1rem;
 }
 
@@ -150,7 +150,7 @@ h1{
 }
 .user {  
   display: flex;
-  width: 90%;
+  width: 100%;
   background: var(--aside-bg-color);
   border-radius: 20px;
   height: 5em;
@@ -161,7 +161,7 @@ h1{
 
 
 .search{
-  width: 90%;
+  width: 100%;
   justify-content: center;
 }
 
