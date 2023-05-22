@@ -1,56 +1,27 @@
 {
-  
-  "name": "plantcarewebsite",
-  
-  "version": "1.0.0",
-  
-  "description": "Website to check what care your plant needs.",
-  
-  "main": "app.js",
-  
-  "scripts": {
-  
-    
-  "start": "node app.js",
-  
-    
-  "test": "echo \"Error: no test specified\" && exit 1"
-  
-  },
-  
-  "repository": {
-  
-    
-  "type": "git",
-  
-    
-  "url": "git+https://github.com/XanderLubbe/PlantCareWebsite.git"
-  
-  },
-  
-  "author": "Nature's Essence",
-  
-  "license": "ISC",
-  
-  "bugs": {
-  
-    
-  "url": "https://github.com/XanderLubbe/PlantCareWebsite/issues"
-  
-  },
-  
-  "homepage": "https://github.com/XanderLubbe/PlantCareWebsite#readme",
-  
-  "dependencies": {
-  
-    
-  "dotenv": "^16.0.3",
-  
-    
-  "express": "^4.18.2",
-  
-    
-  "mssql": "^9.1.1"
-  
-  }
-}
+    "name": "plantcarewebsite",
+    "version": "1.0.0",
+    "description": "Website to check what care your plant needs.",
+    "main": "app.js",
+    "scripts": {
+     "start": "node app.js",
+     "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+     "type": "git",
+     "url": "git+https://github.com/XanderLubbe/PlantCareWebsite.git"
+    },
+    "author": "Nature's Essence",
+    "license": "ISC",
+    "bugs": {
+     "url": "https://github.com/XanderLubbe/PlantCareWebsite/issues"
+    },
+    "homepage": "https://github.com/XanderLubbe/PlantCareWebsite#readme",
+    "dependencies": {
+     "dotenv": "^16.0.3",
+     "ejs": "^3.1.9",
+     "express": "^4.18.2",
+     "express-session": "^1.17.3",
+     "mysql": "^2.18.1"
+    }
+   }

@@ -1,26 +1,80 @@
-* {
-  box-sizing: border-box;
+:root {
+  --green: #0ed145;
+  --white: #fff;
+  --input-border-color: #dadce0 ;
 }
+
+/* body */
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  height: 100vh;
+  align-items: center;
   font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* header footer */
+
+header img,
+footer img {
+  width: 100%;
+  height: 100%;
+  align-self: center;
+}
+header ,
+footer {
+  width: 100vw;
+  height: auto;
+  min-width: 10vh;
 }
 
 header h1 {
   font-size: 4em;
-  margin: 0;
+  margin: 0; 
 }
 
-main {
-  max-width: 25em;
-  margin: 0 auto;
-  padding: 2em;
+/* main */
+main{
+  display: flex; 
+  flex-direction: column; 
+  align-self: center;
+  width: 50vw;
+  max-width: 30em;
+  min-width: 20em;
 }
 
-form {
-  display: flex;
+/* fieldset */
+
+fieldset {
+  border: 0.0625em solid var(--input-border-color);
+  border-radius: 0.3125em;
+  padding: 1em;
+  margin: 0;  
+  
+}
+
+legend {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  padding-left: 0.5em;
+}
+
+/* form */
+
+form {  
+  display: flex;  
   flex-direction: column;
+}
+
+
+form >button {
+  width: 100%;
 }
 
 label {
@@ -30,17 +84,21 @@ label {
 }
 
 input {
-  border: 0.0625em solid #dadce0;
+  border: 0.0625em solid var(--input-border-color);
   border-radius: 0.3125em;
-  padding: 0.75em;
+  height: 2em;
   margin-bottom: 1em;
+}
+input:focus{
+  outline: solid #0ed145;
 }
 
 button {
-  background-color: #0ed145;
-  border: none;
+  background-color: var(--green);
+  border: var(--white) solid 0.0625em;
+  color: var(--white);
   border-radius: 0.3125em;
-  color: #fff;
+  
   font-size: 1em;
   font-weight: bold;
   padding: 0.75em;
@@ -49,7 +107,9 @@ button {
 }
 
 button:hover {
-  background-color: #0ed145;
+  background-color: var(--white);
+  color: var(--green);
+  border: var(--green) solid 0.0625em;
 }
 
 .forgot-password,
@@ -60,30 +120,28 @@ button:hover {
   color: #5f6368;
 }
 
-.create-account a{
+.create-account a,
+.forgot-password a {
   text-decoration: none;
+  color: #5f6368;
 }
 .create-account a:hover {
-  color: #0ed145;
+  color: var(--green);
 }
 
-.forgot-password:hover,
-.create-account:hover {
-  text-decoration: underline;
+.forgot-password a:hover,
+.create-account a:hover {
+  color: var(--green);
   cursor: pointer;
 }
 
-fieldset {
-  border: 0.0625em solid #dadce0;
-  border-radius: 0.3125em;
-  padding: 1em;
-  margin: 0;
-  margin-bottom: 1.5em;
+.alert-danger {
+  color: var(--green);
 }
 
-legend {
-  font-size: 1em;
-  font-weight: bold;
-  margin-bottom: 1em;
-  padding-left: 0.5em;
+.link-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
+  
