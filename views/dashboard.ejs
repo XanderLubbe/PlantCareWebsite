@@ -35,25 +35,24 @@
             <a id="dashIcon" href="/dashboard">Dashboard</a>
           </li>
           <li>
-            <a href="/plant/list">
+            <a href="/user/plants">
               <img 
                 class="icon" 
                 alt="myplant-icon" 
                 src="/static/images/icons/myplant-icon.png"              
               >
             </a>            
-            <a id="myPlantIcon" href="/plant/list">My Plants</a>
+            <a id="myPlantIcon" href="/user/plants">My Plants</a>
           </li>
           <li>
-            <a href="/plant/details">
+            <a href="/plant/list">
               <img 
               class="icon" 
               alt="about-icon" 
               src="/static/images/icons/about-icon.png" 
-              href="/plant/details"
               >
             </a>            
-            <a id="aboutIcon" href="/plant/details">About</a>
+            <a id="aboutIcon" href="/plant/list">About</a>
           </li>
           <li>
             <a href="/error">
@@ -77,6 +76,7 @@
           Welcome <%= user.username %>!
           <img alt="user" class="user" src="/static/images/icons/user-icon(1).png"> 
         </p>  
+        <section><%- weather %></section>
       </section>
                 
     </section>

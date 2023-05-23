@@ -1,4 +1,8 @@
 const userModel = require("../models/user");
+const ejs = require('ejs');
+const path = require('path');
+
+const rootDir = path.dirname(__dirname);
 
 exports.getLogin = (req, res) => {
   let message = req.session.message;
@@ -77,8 +81,9 @@ exports.errors = (req, res) => {
   res.render("ErrorPages/Construction.ejs", { result: "" });
 };
 
-exports.dashboard = (req, res) => {
+exports.dashboard = async (req, res) => {
   const user = req.session.user;
   console.log(user);
-  res.render("dashboard.ejs", { user: user });
+  const weather = await ejs.renderFile(rootDir + '/views/Weather/weather.ejs')
+  res.render("dashboard.ejs", { user: user, weather: weather });
 };

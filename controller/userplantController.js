@@ -1,4 +1,8 @@
 const userplantsModel = require('../models/userplant');
+const ejs = require('ejs');
+const path = require('path');
+
+const rootDir = path.dirname(__dirname);
 
 exports.getUserPlants = (req, res) => {
     const user = req.session.user;
@@ -23,7 +27,7 @@ exports.postAddPlant = (req, res) => {
         if (responseData === true){
             res.render('dashboard.ejs', {user: {username:responseMessage}});
         } else{
-            res.render('dashboard.ejs', {user: {username:errorMessage}});
+            res.render('dashboard.ejs', {user: {username:errorMessage}, html: html});
         }
         
       })
@@ -52,3 +56,56 @@ exports.postRemovePlant = (req, res) => {
         res.render('Login/register.ejs', {user: {username:error}});
       });
 }
+
+exports.addPlant = async (req, res) => {
+    const html = await ejs.renderFile(rootDir + '/views/Plants/addPlant.ejs')
+    res.status(200).send(html)
+  }
+  
+  exports.myPlants = async (req, res) => {
+    const user = req.session.user;
+    
+    const plantDataArray = getPlantDataStub()
+    const plantInfoBubbles = await ejs.renderFile(rootDir + '/views/Plants/plantTileInfoBubble.ejs', )
+    const plantTilePromises = []
+    for(let i = 0; i < plantDataArray.length; i++){
+      plantTilePromises.push( ejs.renderFile(rootDir + '/views/Plants/plantTiles.ejs', { plantInfoBubbles: plantInfoBubbles, imageUrl: plantDataArray[i].imageUrl, nickName: plantDataArray[i].nickName } ) )
+    }
+    const plantTiles = await Promise.all(plantTilePromises)
+    const html = await ejs.renderFile(rootDir + '/views/Plants/myPlants.ejs', {plantTiles})
+    res.render("dashboard.ejs", { user: user, weather: html });
+  }
+  
+  // stub
+  function getPlantDataStub() {
+    return [
+      {
+        imageUrl: '/static/images/philodendron.jpg',
+        nickName: 'Leo',
+      },
+      {
+        imageUrl: '/static/images/aloe.jpg',
+        nickName: 'Mike',
+      },
+      {
+        imageUrl: '/static/images/bromeliad.jpg',
+        nickName: 'Juan-Roux',
+      },
+      {
+        imageUrl: '/static/images/orchid.jpg',
+        nickName: 'Zeerak',
+      },
+      {
+        imageUrl: '/static/images/sanserveria.jpg',
+        nickName: 'Johan',
+      },
+      {
+        imageUrl: '/static/images/sedum.jpg',
+        nickName: 'Xander',
+      },
+      {
+        imageUrl: '/static/images/spathiphyllum.jpg',
+        nickName: 'Bobby',
+      },
+    ]
+  }

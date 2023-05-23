@@ -1,4 +1,4 @@
-body {
+/* body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,9 +7,11 @@ body {
   font-family: "Open Sans", sans-serif;
   background: #222;
   font-size: 120%;
-}
+} */
 
 .card {
+  font-family: "Open Sans", sans-serif;
+  font-size: 120%;
   background: #e7e4e4d0;
   color: white;
   padding: 2em;
@@ -19,13 +21,13 @@ body {
   margin: 1em;
 }
 
-.search {
+.card .search {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-button {
+.card button {
   margin: 0.5em;
   border-radius: 50%;
   border: none;
@@ -38,7 +40,7 @@ button {
   transition: 0.2s ease-in-out;
 }
 
-input.search-bar {
+.card input.search-bar {
   border: none;
   outline: none;
   padding: 0.4em 1em;
@@ -50,32 +52,32 @@ input.search-bar {
   width: calc(100% - 100px);
 }
 
-button:hover {
+.card button:hover {
   background: #7c7c7c6b;
 }
 
-h1.temp {
+.card h1.temp {
   margin: 0;
   margin-bottom: 0.4em;
 }
 
-.flex {
+.card .flex {
   display: flex;
   align-items: center;
 }
 
-.description {
+.card .description {
   text-transform: capitalize;
   margin-left: 8px;
 }
 
-.weather.loading {
+.card .weather.loading {
   visibility: hidden;
   max-height: 20px;
   position: relative;
 }
 
-.weather.loading:after {
+.card .weather.loading:after {
   visibility: visible;
   content: "Loading...";
   color: white;

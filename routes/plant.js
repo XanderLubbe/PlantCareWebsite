@@ -7,6 +7,4 @@ router.get('/list', authController.auth, PlantController.getPlants);
 
 router.get('/search/:name', authController.auth, PlantController.getByName);
 
-router.get('/addPlant', PlantController.addPlant);
-
 module.exports = router;

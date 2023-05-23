@@ -19,7 +19,7 @@ app.use(session(config.session));
 
 app.use('/', userRouter)
 app.use('/plant', plantRouter)
-app.use('/userplant', userplantRouter)
+app.use('/user/plants', userplantRouter)
 app.use('/weather', weatherRouter)
 app.use('*', errorRouter)
 
