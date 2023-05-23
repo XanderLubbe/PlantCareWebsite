@@ -1,0 +1,132 @@
+<script>
+
+    var myValue = ''
+    let searchResults = []
+    let dataArray = []
+    async function searchOptions() {
+        var searchQuery = document.getElementById("searchInput").value;
+        if (searchQuery.length >= 3) {
+            fetchOptions(searchQuery).then(
+                (response) => {
+                    searchResults = response
+                    dataArray = JSON.parse(JSON.stringify(searchResults));
+                    populateHTML(dataArray);
+                }
+            )
+        }
+    }
+    async function fetchOptions(query) {
+        return fetch(`http://localhost:8000/plant/search/${query}`).then(
+            (response) => {
+                return response.json()
+            })
+    }
+    async function populateHTML(data) {
+        const selector = document.getElementById("selectPlantName")
+        selector.innerHTML = '';
+        for (let i = 0; i < data.length; i++) {
+            const plantName = (data[i].plantName != null ? data[i].plantName : "")
+            const scientificName = (data[i].scientificName != null ? data[i].scientificName : "")
+            const otherName = (data[i].otherName != null ? data[i].otherName : "")
+            const plantId = data[i].plantId
+
+            selector.innerHTML += `<option plant-id="${plantId}" >
+                ${plantName} | ${scientificName} | ${otherName}
+                </option>`
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const nickNameInput = document.getElementById('nickName');
+        const searchInput = document.getElementById('searchInput');
+        const selectPlantName = document.getElementById('selectPlantName');
+        const addPlantButton = document.getElementById('addPlantButton');
+
+        function checkFormFields() {
+            if (nickNameInput.value && (searchInput.value || selectPlantName.value)) {
+                addPlantButton.removeAttribute('disabled');
+            } else {
+                addPlantButton.setAttribute('disabled', true);
+            }
+        }
+
+        nickNameInput.addEventListener('input', checkFormFields);
+        searchInput.addEventListener('input', checkFormFields);
+        selectPlantName.addEventListener('change', checkFormFields);
+    })
+</script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/images/favicon/site.webmanifest">
+    <title>Plant care</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="/static/css/Plants/addPlant.css" />
+</head>
+
+<body>
+    <main class="dashboard">
+        <aside class="sidebar flex-c">
+            <img class="logo" alt="Plant care logo" src="/static/images/logo/Plant_Care.png">
+            <hr>
+            <nav>
+                <ul>
+                    <li> <img class="icon" alt="dashboard-icon" src="/static/images/icons/dashboard-icon.png">
+                        <a href="/"> Dashboard</a>
+                    </li>
+                    <li> <img class="icon" alt="dashboard-icon" src="/static/images/icons/dashboard-icon.png">
+                        <a href="/plant/list">List</a>
+                    </li>
+                    <li> <img class="icon" alt="dashboard-icon" src="/static/images/icons/dashboard-icon.png">
+                        <a href="/plant/details">Details</a>
+                    </li>
+                </ul>
+            </nav>
+            <hr>
+            <p class="log-out">
+                <img class="icon" alt="dashboard-icon" src="/static/images/icons/dashboard-icon.png">
+                <a href=""> Logout </a>
+            </p>
+        </aside>
+        <section class="content">
+            <section class="topbar flex flex-sb">
+                <form class="search flex">
+                    <input type="text" id="search" name="search" placeholder=" Search ">
+                </form>
+                <p class="user flex">User Name
+                    <img alt="user" class="user" src="/static/images/icons/user-icon(1).png">
+                </p>
+            </section>
+            <!-- add plant section  -->
+            <section class="addPlant-section">
+                <h2>Enter your plant details below </h2>
+                <form class="addPlant-form" action="/addPlant" method="POST">
+                    <fieldset class="addPlant-fieldset">
+                        <legend>Give your new plant a cute name </legend>
+                        <input class="addPlant-name-input" type="text" id="nickName" name="nickName" value=""><br>
+                    </fieldset>
+                    <br>
+
+                    <fieldset class="addPlant-fieldset">
+                        <legend>Search for your plant below </legend>
+                        <input class="addPlant-searchBox" type="text" id="searchInput" onkeyup="searchOptions()"
+                            placeholder="Search"><br>
+                        <select class="select-plant-name" id="selectPlantName">
+                            <option value="" disabled selected>Please search above</option>
+                        </select><br>
+                    </fieldset>
+
+                    <button class="addPlant-button" id="addPlantButton" type="submit" disabled>Add plant</button><br>
+                </form>
+            </section>
+    </main>
+</body>
+
+</html>

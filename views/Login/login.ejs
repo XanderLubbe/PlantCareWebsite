@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/images/favicon/site.webmanifest">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="height=device-height width=device-width, initial-scale=1" />
+    <title>Sign in</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/Login/login.css" />
+  </head>
+  <body>
+    <header>
+
+      <img src="/static/images/Login/Header_01.png" width="100%" />
+    </header>
+    <main>
+      <fieldset>
+        <legend>Sign in</legend>
+        <form action="/" method="POST">
+          <label for="username">Username</label>
+          <input
+            type="username"
+            id="username"
+            name="username"
+            required
+            pattern="^\S+$"
+          />
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+          <button type="submit">Sign in</button>          
+        </form>   
+            
+      </fieldset>
+      <span class="link-container">
+        <p class="forgot-password">
+          <a href="/errors">Forgot password?</a>
+        </p>
+        <% if (result) { %>
+        <p class="alert-danger"><%= result %></p>
+        <% } %>
+        <p class="create-account">
+          <a href="/register">Create account</a>
+        </p>
+      </span>   
+          
+    </main>
+    <footer>
+      <img src="/static/images/Login/Footer_Image_01.png" />
+    </footer>
+  </body>
+</html>

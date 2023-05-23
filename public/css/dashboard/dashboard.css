@@ -1,0 +1,181 @@
+:root{
+  --main-bg-color: #f2f2f2;
+  --aside-bg-color: #ffffff;
+  --green : #0ed145;
+  --dark-green : #0E9545;
+  --orange: #F09801;
+  --font-family: "Lato", sans-serif;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  font-family:var(--font-family);
+}
+
+/* body */
+
+body {
+  background: #fff;
+  color: #a1a2af;
+  min-height: 100vh;
+  background: var(--main-bg-color);
+  display: flex; 
+}
+
+/* Side Nav bar */
+
+hr {
+  border: none;
+  height: 2px; /* Sets the height of the hr element */
+  background-color: green;
+  width: 100%;
+  margin: 5% 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 20vw;
+  max-width: 12.5em;
+  min-width: 4em;
+  font-size:1.2em ;
+  background: var(--aside-bg-color);
+}
+.sidebar h1 {
+  text-align: center;
+  color: var(--green);
+}
+nav {
+  display: flex;
+  justify-content: center;
+  
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+li{
+  display: flex;
+  align-items: center; 
+}
+
+nav ul a {
+  text-decoration: none;
+  color: rgb(80, 80, 80);;
+  padding-left: 2%;
+}
+nav ul img {
+  min-width: auto;
+  min-height: 100%;
+
+}
+
+
+nav ul a:hover,
+nav ul a:active {
+  color: var(--green);
+}
+
+nav ul a:hover {
+  text-decoration: none;
+}
+.logo{
+  padding: 10%;
+  width: 80%;
+  height: auto;
+  align-self: center;
+}
+
+.icon {
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+.log-out{
+  display: flex;
+  flex-direction: row;  
+  justify-content: center;
+  align-items: center;
+}
+a.log-out {
+  color: rgb(80, 80, 80);;
+  text-decoration: none;
+}
+
+a.log-out:hover {
+  color: var(--orange);
+}
+.content{
+  display: flex;
+  padding: 1%;
+  width: 100%;
+}
+
+
+.hidden {
+  display: none;
+}
+/* main content */
+
+h1{
+  color: rgb(70, 70, 70);
+  width: 100%;
+}
+
+/* top bar */
+.topbar {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+}
+
+.user img{
+  background: #fff;
+  color: #1e1e2d;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  padding-left: 1em;
+  padding-right: 1em;  
+}
+.user {  
+  display: flex;
+  width: 100%;
+  background: var(--aside-bg-color);
+  border-radius: 20px;
+  height: 5em;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1em;
+}
+
+
+.search{
+  width: 100%;
+  justify-content: center;
+}
+
+.search input {
+  width: 100%;
+  height: 3em;
+  padding-left: 1em;
+  margin-bottom: 1em;
+  border: none;
+  outline: none;
+  color: black;
+  border-radius: 20px;  
+  background-color: var(--aside-bg-color);
+}
+
+
+/* end main content */

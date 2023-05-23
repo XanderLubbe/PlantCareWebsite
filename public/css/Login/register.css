@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header h1 {
+  font-size: 4em;
+  margin: 0;
+}
+
+main {
+  max-width: 25em;
+  margin: 0 auto;
+  padding: 2em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 0.875em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+input {
+  border: 0.0625em solid #dadce0;
+  border-radius: 0.3125em;
+  padding: 0.75em;
+  margin-bottom: 1em;
+}
+
+button {
+  background-color: #0ed145;
+  border: none;
+  border-radius: 0.3125em;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0.75em;
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0ed145;
+}
+
+.forgot-password,
+.create-account {
+  margin-top: 1em;
+  font-size: 0.875em;
+  text-align: center;
+  color: #5f6368;
+}
+
+.forgot-password:hover,
+.create-account:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+fieldset {
+  border: 0.0625em solid #dadce0;
+  border-radius: 0.3125em;
+  padding: 1em;
+  margin: 0;
+  margin-bottom: 1.5em;
+}
+
+legend {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  padding-left: 0.5em;
+}
+
+/* Media queries for smaller screens */
+@media only screen and (max-width: 600px) {
+  main {
+    padding: 1em;
+  }
+
+  form {
+    margin-top: 1em;
+  }
+
+  input {
+    font-size: 0.9em;
+  }
+
+  button {
+    font-size: 0.9em;
+  }
+
+  .create-account {
+    font-size: 0.75em;
+  }
+}
+
+/* Media queries for larger screens */
+@media only screen and (min-width: 601px) {
+  main {
+    max-width: 40em;
+  }
+
+  input {
+    width: 100%;
+  }
+}

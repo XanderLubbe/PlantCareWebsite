@@ -1,0 +1,147 @@
+:root {
+  --green: #0ed145;
+  --white: #fff;
+  --input-border-color: #dadce0 ;
+}
+
+/* body */
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  height: 100vh;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* header footer */
+
+header img,
+footer img {
+  width: 100%;
+  height: 100%;
+  align-self: center;
+}
+header ,
+footer {
+  width: 100vw;
+  height: auto;
+  min-width: 10vh;
+}
+
+header h1 {
+  font-size: 4em;
+  margin: 0; 
+}
+
+/* main */
+main{
+  display: flex; 
+  flex-direction: column; 
+  align-self: center;
+  width: 50vw;
+  max-width: 30em;
+  min-width: 20em;
+}
+
+/* fieldset */
+
+fieldset {
+  border: 0.0625em solid var(--input-border-color);
+  border-radius: 0.3125em;
+  padding: 1em;
+  margin: 0;  
+  
+}
+
+legend {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  padding-left: 0.5em;
+}
+
+/* form */
+
+form {  
+  display: flex;  
+  flex-direction: column;
+}
+
+
+form >button {
+  width: 100%;
+}
+
+label {
+  font-size: 0.875em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+input {
+  border: 0.0625em solid var(--input-border-color);
+  border-radius: 0.3125em;
+  height: 2em;
+  margin-bottom: 1em;
+}
+input:focus{
+  outline: solid #0ed145;
+}
+
+button {
+  background-color: var(--green);
+  border: var(--white) solid 0.0625em;
+  color: var(--white);
+  border-radius: 0.3125em;
+  
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0.75em;
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--white);
+  color: var(--green);
+  border: var(--green) solid 0.0625em;
+}
+
+.forgot-password,
+.create-account {
+  margin-top: 1em;
+  font-size: 0.875em;
+  text-align: center;
+  color: #5f6368;
+}
+
+.create-account a,
+.forgot-password a {
+  text-decoration: none;
+  color: #5f6368;
+}
+.create-account a:hover {
+  color: var(--green);
+}
+
+.forgot-password a:hover,
+.create-account a:hover {
+  color: var(--green);
+  cursor: pointer;
+}
+
+.alert-danger {
+  color: var(--green);
+}
+
+.link-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+  
