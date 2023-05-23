@@ -1,7 +1,12 @@
 const config = require('../config/myplantcare-config');
 
 async function getUserPlants ({userId}) {
-  const response = await fetch(`${config.userplants_url}/${userId}`)
+  const response = await fetch(`${config.userplants_url}/${userId}`,{
+    method: 'GET',
+    headers: {
+      'api-key': config.api_key,
+    }
+  })
   return response.json()
 }
 
@@ -10,6 +15,7 @@ async function insertUserPlant (plantNickName, {userId}, plantId) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'api-key': config.api_key,
     },
     body: {
       'plantNickName': plantNickName,
@@ -25,6 +31,7 @@ async function removeUserPlant ({userId}, plantNickName) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'api-key': config.api_key,
     },
     body: {
       'userId': userId,

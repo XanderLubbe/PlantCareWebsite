@@ -5,6 +5,7 @@ async function registerUser(user) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'api-key': config.api_key,
     },
     body: JSON.stringify(user)
   })
@@ -17,6 +18,7 @@ async function validateUser(user) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'api-key': config.api_key,
     },
     body: JSON.stringify(user)
   })
@@ -29,6 +31,7 @@ async function updateUser(user) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'api-key': config.api_key,
     },
     body: JSON.stringify(user)
   })
