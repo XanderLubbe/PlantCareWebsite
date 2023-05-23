@@ -3,10 +3,13 @@ const router = express.Router();
 const UserController = require("../controller/userController");
 const authController = require("../controller/authenticationController");
 
+router.get("/", (req, res) => {
+  res.render("../views/ThirdPartyAuth/authentication.ejs");
+});
 
-router.get("/", UserController.getLogin);
+router.get("/login", UserController.getLogin);
 
-router.post("/", UserController.postLogin);
+router.post("/login", UserController.postLogin);
 
 router.get("/register", UserController.getRegister);
 
@@ -16,7 +19,7 @@ router.post("/register", UserController.postRegister);
 
 // router.post("/user/profile", authController.auth, UserController.postProfile);
 
-router.get("/dashboard", authController.auth, UserController.dashboard);
+router.get("/dashboard", UserController.dashboard);
 
 router.get("/errors", UserController.errors);
 

@@ -1,6 +1,6 @@
 const userModel = require("../models/user");
-const ejs = require('ejs');
-const path = require('path');
+const ejs = require("ejs");
+const path = require("path");
 
 const rootDir = path.dirname(__dirname);
 
@@ -18,7 +18,7 @@ exports.postLogin = (req, res) => {
     .then((responseData) => {
       if (responseData.succeeded === true) {
         req.session.user = responseData;
-        res.redirect('/dashboard');
+        res.redirect("/dashboard");
       } else {
         res.render("Login/login.ejs", { result: errorMessage });
       }
@@ -36,21 +36,21 @@ exports.getRegister = (req, res) => {
 exports.postRegister = (req, res) => {
   const responseMessage = "Successfully registered!";
   const errorMessage = "Unferntunately failed registering!";
-  
+
   userModel
-  .registerUser(req.body)
-  .then((responseData) => {
-    if (responseData === true) {
-      req.session.message = responseMessage;
-      res.redirect("/");
-    } else {
-      res.render("Login/register.ejs", { result: errorMessage });
-    }
-  })
-  .catch((error) => {
-    console.error("Error registering user:", error);
-    res.render("Login/register.ejs", { result: error });
-  });
+    .registerUser(req.body)
+    .then((responseData) => {
+      if (responseData === true) {
+        req.session.message = responseMessage;
+        res.redirect("/");
+      } else {
+        res.render("Login/register.ejs", { result: errorMessage });
+      }
+    })
+    .catch((error) => {
+      console.error("Error registering user:", error);
+      res.render("Login/register.ejs", { result: error });
+    });
 };
 
 // exports.getProfile = (req, res) => {
@@ -60,7 +60,7 @@ exports.postRegister = (req, res) => {
 // exports.postProfile = (req, res) => {
 //   const responseMessage = "Successfully changed info!";
 //   const errorMessage = "Unferntunately failed to change info!";
-  
+
 //   userModel
 //   .updateUser(req.body)
 //   .then((responseData) => {
@@ -82,8 +82,8 @@ exports.errors = (req, res) => {
 };
 
 exports.dashboard = async (req, res) => {
-  const user = req.session.user;
-  console.log(user);
-  const weather = await ejs.renderFile(rootDir + '/views/Weather/weather.ejs')
+  const user = req.session.passport.user;
+  console.log(req.session);
+  const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
   res.render("dashboard.ejs", { user: user, weather: weather });
 };
