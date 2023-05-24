@@ -4,7 +4,7 @@
 name: Build and deploy Node.js app to Azure Web App - myplantcare
 
 on:
-  pull_request:
+  push:
     branches:
       - main
   workflow_dispatch:
@@ -14,10 +14,10 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
       - name: Set up Node.js version
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1
         with:
           node-version: '18.x'
 
@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'myplantcare'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9E77D87C0EE44F0AADB5BFD4DB40B0D8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D145C8D273E0439FBA83DB1DD4A52F6A }}
           package: .
