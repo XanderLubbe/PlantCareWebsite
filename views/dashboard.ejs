@@ -86,15 +86,20 @@
         <form class="search">
           <input type="text" id="search" name="search" placeholder=" Search " />
         </form>
-        <p class="user">
+        <section class="user">
           Welcome <%= user.displayName %>!
           <img
             alt="user"
             class="user"
             src="/static/images/icons/user-icon(1).png"
           />
-        </p>
-        <section><%- weather %></section>
+        </section>        
+      </section>
+      <section class="weather">
+        <%- weather %>
+      </section>
+      <section class="weather">
+        test
       </section>
     </section>
     <script src="/static/js/Dashboard/dashboard.js" async defer></script>
