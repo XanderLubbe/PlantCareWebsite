@@ -4,12 +4,8 @@ USE PlantDB;
 
 CREATE TABLE `AppUser` (
   `userId` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `passcode` longtext NOT NULL,
   `city` longtext NOT NULL,
-  `province` varchar(50) DEFAULT NULL,
-  UNIQUE (`username`),
   PRIMARY KEY (`userId`)
 );
 
