@@ -1,15 +1,15 @@
 USE PlantDB;
 /*Insert statements for User*/
-insert into AppUser (username,email,passcode, city, province) VALUES ('nchild0','nchild0@ameblo.jp', 'ePOMNxAH', 'Johannesburg', 'Gauteng');
-insert into AppUser (username,email,passcode, city, province) VALUES ('jlongbothom1','jlongbothom1@goodreads.com', 'Na4xA8Cc8e', 'Johannesburg', 'Gauteng');
-insert into AppUser (username,email,passcode, city, province) VALUES ('gmaltster2','gmaltster2@google.it', 'mUBYrKSbJl', 'Johannesburg', 'Gauteng');
-insert into AppUser (username,email,passcode, city, province) VALUES ('ooliveras3','ooliveras3@time.com', 'gqIE2jXiflI', 'Johannesburg', 'Gauteng');
-insert into AppUser (username,email,passcode, city, province) VALUES ('jnormanvell4','jnormanvell4@ed.gov', 'bBjzNXkep5A', 'Johannesburg', 'Gauteng');
-insert into AppUser (username,email,passcode, city, province) VALUES ('gpetzolt5','gpetzolt5@webeden.co.uk', 'cfqBGCB', 'Johannesburg', 'Gauteng');
-insert into AppUser (username,email,passcode, city, province) VALUES ('nperschke6','nperschke6@aboutads.info', 't3C9A8', 'Johannesburg', 'Gauteng');
-insert into AppUser (username,email,passcode, city, province) VALUES ('mwilley7','mwilley7@msu.edu', 'PKk2tA', 'Johannesburg', 'Gauteng');
-insert into AppUser (username,email,passcode, city, province) VALUES ('cyushachkov8','cyushachkov8@surveymonkey.com', 'se11AgiT5', 'Johannesburg', 'Gauteng');
-insert into AppUser (username,email,passcode, city, province) VALUES ('aselborne9','aselborne9@fc2.com', 'kQPau4TH0','Johannesburg', 'Gauteng');
+insert into AppUser (email, city) VALUES ('plantcareEnjoyer@gmail.com', 'Johannesburg');
+insert into AppUser (email, city) VALUES ('jdoeplantsplease@gmail.com', 'Johannesburg');
+insert into AppUser (email, city) VALUES ('gmaltster2@google.it', 'Johannesburg');
+insert into AppUser (email, city) VALUES ('ooliveras3@time.com', 'Johannesburg');
+insert into AppUser (email, city) VALUES ('jnormanvell4@ed.gov', 'Johannesburg');
+insert into AppUser (email, city) VALUES ('gpetzolt5@webeden.co.uk', 'Johannesburg');
+insert into AppUser (email, city) VALUES ('nperschke6@aboutads.info', 'Johannesburg');
+insert into AppUser (email, city) VALUES ('mwilley7@msu.edu', 'Johannesburg');
+insert into AppUser (email, city) VALUES ('cyushachkov8@surveymonkey.com', 'Johannesburg');
+insert into AppUser (email, city) VALUES ('aselborne9@fc2.com', 'Johannesburg');
 
 
 /*Insert statements for Plant Category*/
