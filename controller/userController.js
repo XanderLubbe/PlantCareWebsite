@@ -1,10 +1,10 @@
+const { log } = require("console");
 const userModel = require("../models/user");
 const ejs = require("ejs");
 const passport = require("passport");
-const config = require('../config/googleauth-config');
-const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const path = require('path');
 
-let user;
+const rootDir = path.dirname(__dirname);
 
 passport.serializeUser(function (user, cb) {
   cb(null, user);
@@ -14,35 +14,20 @@ passport.deserializeUser(function (obj, cb) {
   cb(null, obj);
 });
 
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: config.google_id,
-      clientSecret: config.google_secret,
-      callbackURL: config.callback_url,
-    },
-    function (accessToken, refreshToken, profile, done) {
-      console.log(profile);
-      user = profile;
-      return done(null, user);
-    }
-  )
-);
-
-exports.auth = passport.authenticate("google", { scope: ["profile", "email"] })
-
-exports.authCallbackPass = passport.authenticate('google', { failureRedirect: '/errors' })
-
 exports.authCallback = (req, res) =>{
-  console.log(req.session.passport.user.emails[0].value);
-  userModel.loginUser(req.session.passport.user.emails[0].value)
+  userModel.registerUser(req.session.passport.user.emails[0].value)
   .then(responseData => {
-    if (responseData.succeeded === true) {
-      req.session.passport.user.userId =  responseData.userId;
-      req.session.passport.user.succeeded =  responseData.succeeded;
-      res.redirect("/dashboard");
-    } else {
-      res.redirect("/");
+    if (responseData === true) {
+      userModel.loginUser(req.session.passport.user.emails[0].value)
+      .then(userData => {
+        console.log(userData);
+        if (userData.succeeded === true){
+          req.session.passport.user.userId = userData.userId;
+          req.session.passport.user.succeeded = userData.succeeded;
+          res.redirect("/dashboard");
+        } else {
+          res.redirect("/");
+        }})
     }
   })
   .catch(error => {
@@ -54,7 +39,7 @@ exports.authCallback = (req, res) =>{
 
 exports.getLogin = (req, res) => {
   let message = req.session.message;
-  req.session.passport.user = { succeeded: false };
+  req.session.passport = { user: null};
   res.render("Login/login.ejs", { result: message });
 };
 

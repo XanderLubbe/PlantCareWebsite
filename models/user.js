@@ -1,43 +1,30 @@
-const config = require('../config/myplantcare-config');
+const config = require("../config/myplantcare-config");
 
-async function registerUser(user) {
+async function registerUser(userEmail) {
+  const data = {
+    "email": userEmail
+  }
   const response = await fetch(`${config.user_url}register`,{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'api-key': config.api_key,
-    },
-    body: JSON.stringify(user)
+    method: "POST",
+    headers: config.headers,
+    body: JSON.stringify(data)
   })
   
-  return response.json()
+  return response.json();
 }
 
-async function validateUser(user) {
+async function loginUser(userEmail) {
+  const data = {
+    "email": userEmail
+  }
   const response = await fetch(`${config.user_url}login`,{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'api-key': config.api_key,
-    },
-    body: JSON.stringify(user)
+    method: "POST",
+    headers: config.headers,
+    body: JSON.stringify(data)
   })
   
   return response.json()
 }
 
-async function updateUser(user) {
-  const response = await fetch(`${config.user_url}update/${user.userId}`,{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'api-key': config.api_key,
-    },
-    body: JSON.stringify(user)
-  })
-  
-  return response.json()
-}
-
-module.exports = {registerUser, validateUser, updateUser}
+module.exports = {loginUser, registerUser}
 

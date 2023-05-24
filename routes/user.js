@@ -7,9 +7,9 @@ router.get("/", (req, res) => {
   res.render("../views/ThirdPartyAuth/authentication.ejs");
 });
 
-router.get("/auth/google", UserController.auth);
+router.get("/auth/google", authController.authGoogle);
 
-router.get("/auth/google/callback", UserController.authCallbackPass, UserController.authCallback);
+router.get("/auth/google/callback", authController.authCallbackPass, UserController.authCallback);
 
 // router.get("/user/profile", authController.auth, UserController.getProfile);
 
