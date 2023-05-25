@@ -114,6 +114,7 @@ a.log-out:hover {
 }
 .content{
   display: flex;
+  flex-direction: column;
   padding: 1%;
   width: 100%;
 }
@@ -132,7 +133,6 @@ h1{
 /* top bar */
 .topbar {
   display: flex;
-  width: 100%;
   flex-direction: column;
   justify-content: flex-start;
   padding: 1rem;
@@ -175,6 +175,12 @@ h1{
   color: black;
   border-radius: 20px;  
   background-color: var(--aside-bg-color);
+}
+
+.weather {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
 
 

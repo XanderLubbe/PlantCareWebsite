@@ -13,25 +13,14 @@
   <body>
     <header>
 
-      <img src="/static/images/Login/Header_01.png" width="100%" />
+      <img alt="heading" src="/static/images/Login/Header_01.png" width="100%" />
     </header>
     <main>
       <fieldset>
-        <legend>Sign in</legend>
-        <form action="/" method="POST">
-          <label for="username">Username</label>
-          <input
-            type="username"
-            id="username"
-            name="username"
-            required
-            pattern="^\S+$"
-          />
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required />
-          <button type="submit">Sign in</button>          
-        </form>   
-            
+        <legend>Sign in</legend>                         
+          <a href="/auth/google" class="login-button">
+            <button type="submit">SignIn with Google</button> 
+          </a>           
       </fieldset>
       <span class="link-container">
         <p class="forgot-password">
@@ -40,14 +29,11 @@
         <% if (result) { %>
         <p class="alert-danger"><%= result %></p>
         <% } %>
-        <p class="create-account">
-          <a href="/register">Create account</a>
-        </p>
       </span>   
           
     </main>
     <footer>
-      <img src="/static/images/Login/Footer_Image_01.png" />
+      <img alt="footer image" src="/static/images/Login/Footer_Image_01.png" />
     </footer>
   </body>
 </html>

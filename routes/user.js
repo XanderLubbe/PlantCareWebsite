@@ -3,14 +3,11 @@ const router = express.Router();
 const UserController = require("../controller/userController");
 const authController = require("../controller/authenticationController");
 
-
 router.get("/", UserController.getLogin);
 
-router.post("/", UserController.postLogin);
+router.get("/auth/google", authController.authGoogle);
 
-router.get("/register", UserController.getRegister);
-
-router.post("/register", UserController.postRegister);
+router.get("/auth/google/callback", authController.authCallbackPass, UserController.authCallback);
 
 // router.get("/user/profile", authController.auth, UserController.getProfile);
 

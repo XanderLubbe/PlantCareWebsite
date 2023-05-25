@@ -67,16 +67,6 @@ legend {
 
 /* form */
 
-form {  
-  display: flex;  
-  flex-direction: column;
-}
-
-
-form >button {
-  width: 100%;
-}
-
 label {
   font-size: 0.875em;
   font-weight: bold;
@@ -98,6 +88,7 @@ button {
   border: var(--white) solid 0.0625em;
   color: var(--white);
   border-radius: 0.3125em;
+  width: 100%;
   
   font-size: 1em;
   font-weight: bold;
@@ -144,4 +135,5 @@ button:hover {
   flex-direction: row;
   justify-content: space-evenly;
 }
-  
+
+
