@@ -27,7 +27,7 @@ app.use("/", userRouter);
 app.use("/plant", plantRouter);
 app.use("/user/plants", userplantRouter);
 app.use("/weather", weatherRouter);
-// app.use("*", errorRouter);
+app.use("*", errorRouter);
 
 app.listen(config.port, () => {
   console.log(
