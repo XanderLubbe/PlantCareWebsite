@@ -6,7 +6,6 @@ const rootDir = path.dirname(__dirname);
 
 exports.getUserPlants = (req, res) => {
     const user = req.session.passport.user;
-    
     userplantsModel.getUserPlants(user)
     .then(responseData => {
         res.send(responseData);
@@ -65,15 +64,29 @@ exports.addPlant = async (req, res) => {
   exports.myPlants = async (req, res) => {
     const user = req.session.passport.user;
     
-    const plantDataArray = getPlantDataStub()
-    const plantInfoBubbles = await ejs.renderFile(rootDir + '/views/Plants/plantTileInfoBubble.ejs', )
-    const plantTilePromises = []
-    for(let i = 0; i < plantDataArray.length; i++){
-      plantTilePromises.push( ejs.renderFile(rootDir + '/views/Plants/plantTiles.ejs', { plantInfoBubbles: plantInfoBubbles, imageUrl: plantDataArray[i].imageUrl, nickName: plantDataArray[i].nickName } ) )
-    }
-    const plantTiles = await Promise.all(plantTilePromises)
-    const html = await ejs.renderFile(rootDir + '/views/Plants/myPlants.ejs', {plantTiles})
-    res.render("dashboard.ejs", { user: user, weather: html });
+    userplantsModel.getUserPlants(user)
+    .then(async responseData => {
+      if (responseData) {
+        const imageUrl = '/static/images/philodendron.jpg'
+        const plantDataArray = responseData
+        const plantTilePromises = []
+        for(let i = 0; i < plantDataArray.length; i++){
+         let plantInfoBubbles = await ejs.renderFile(rootDir + '/views/Plants/plantTileInfoBubble.ejs', {water: plantDataArray[i].plantCare.waterRequirement, sunlight: plantDataArray[i].plantCare.sunlightRequirement, temp: plantDataArray[i].plantCare.suitableWeather + "°C", environment: (plantDataArray[i].plantCare.plantEnvironment === true)?"Indoor":"Outdoor"})
+         plantTilePromises.push( ejs.renderFile(rootDir + '/views/Plants/plantTiles.ejs', { plantInfoBubbles: plantInfoBubbles, imageUrl: imageUrl, nickName: plantDataArray[i].plantNickName } ) )
+        }
+        const plantTiles = await Promise.all(plantTilePromises)
+        const html = await ejs.renderFile(rootDir + '/views/Plants/myPlants.ejs', {plantTiles})
+        res.render("dashboard.ejs", { user: user, weather: html, plantCount: responseData.length});
+      } else {
+        res.render("dashboard.ejs", { user: user, weather: null, plantCount: responseData.length });
+      }
+    })
+    .catch(error => {
+      console.error('Error retrieving user\'s plants:', error);
+      res.status(500).send('An error occurred while retrieving user\'s plants');
+    });
+
+    
   }
   
   // stub

@@ -1,5 +1,5 @@
-const { log } = require("console");
 const userModel = require("../models/user");
+const userplantsModel = require('../models/userplant');
 const ejs = require("ejs");
 const passport = require("passport");
 const path = require('path');
@@ -44,6 +44,12 @@ exports.errors = (req, res) => {
 
 exports.dashboard = async (req, res) => {
   const user = req.session.passport.user;
-  const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
-  res.render("dashboard.ejs", { user: user, weather: weather });
+  userplantsModel.getUserPlants(user)
+  .then(async responseData => {
+    const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
+    res.render("dashboard.ejs", { user: user, weather: weather, plantCount: responseData.length});
+  })
+  .catch(err => {
+    console.error(err);
+  });
 };
