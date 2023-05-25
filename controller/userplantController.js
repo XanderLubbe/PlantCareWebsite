@@ -5,7 +5,8 @@ const path = require('path');
 const rootDir = path.dirname(__dirname);
 
 exports.getUserPlants = (req, res) => {
-    const user = req.session.user;
+    const user = req.session.passport.user;
+    
     userplantsModel.getUserPlants(user)
     .then(responseData => {
         console.log(responseData);
@@ -21,7 +22,7 @@ exports.postAddPlant = (req, res) => {
     const responseMessage = 'Successfully added!';
     const errorMessage = 'Unferntunately failed adding plant!';
 
-    const user = req.session.user;
+    const user = req.session.passport.user;
     userplantsModel.insertUserPlant(req.body.NickName, user, req.body.plantId)
     .then(responseData => {
         if (responseData === true){
@@ -41,7 +42,7 @@ exports.postRemovePlant = (req, res) => {
     const responseMessage = 'Successfully removed!';
     const errorMessage = 'Unferntunately failed removing plant!';
 
-    const user = req.session.user;
+    const user = req.session.passport.user;
     userplantsModel.removeUserPlant(user, req.body.NickName)
     .then(responseData => {
         if (responseData === true){
@@ -63,7 +64,7 @@ exports.addPlant = async (req, res) => {
   }
   
   exports.myPlants = async (req, res) => {
-    const user = req.session.user;
+    const user = req.session.passport.user;
     
     const plantDataArray = getPlantDataStub()
     const plantInfoBubbles = await ejs.renderFile(rootDir + '/views/Plants/plantTileInfoBubble.ejs', )

@@ -11,32 +11,28 @@ async function getUserPlants ({userId}) {
 }
 
 async function insertUserPlant (plantNickName, {userId}, plantId) {
+  const data = {
+    "plantNickName": plantNickName,
+    "userId": userId,
+    "plantId": plantId
+  }
   const response = await fetch(`${config.userplants_url}add`,{
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'api-key': config.api_key,
-    },
-    body: {
-      'plantNickName': plantNickName,
-      'userId': userId,
-      'plantId': plantId
-    }
+    headers: config.headers,
+    body: JSON.stringify(data)
   })
   return response.json()
 }
 
 async function removeUserPlant ({userId}, plantNickName) {
+  const data = {
+    "userId": userId,
+    "plantNickName": plantNickName
+  }
   const response = await fetch(`${config.userplants_url}remove`,{
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'api-key': config.api_key,
-    },
-    body: {
-      'userId': userId,
-      'plantNickName': plantNickName
-    }
+    headers: config.headers,
+    body: JSON.stringify(data)
   })
   return response.json()
 }

@@ -4,10 +4,13 @@ const path = require('path');
 const weatherAPI = require('../models/weather');
 
 exports.index = (req, res) => {
-    weatherAPI.getWeatherForecast(req.session.user.city)
+  let userCity = req.params.city;
+  if (!userCity) {
+    userCity = "Johannesburg";
+  }
+    weatherAPI.getWeatherForecast(userCity)
     .then(responseData => {
-      console.log(responseData.list);
-      res.send(responseData.list);
+      res.send(responseData);
     })
     .catch(error => {
       console.error('Error retrieving weather forecast:', error);

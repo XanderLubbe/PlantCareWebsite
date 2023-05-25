@@ -1,84 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/static/images/favicon/site.webmanifest">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/images/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/images/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/images/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/static/images/favicon/site.webmanifest" />
     <title>Plant care</title>
-    <meta name="description" content="">
-    <link rel="stylesheet" href="/static/css/dashboard/dashboard.css">
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/static/css/dashboard/dashboard.css" />
   </head>
   <body>
     <aside id="sidebar" class="sidebar">
-      <img 
-        class="logo" 
-        alt="Plant care logo" 
+      <img
+        class="logo"
+        alt="Plant care logo"
         src="/static/images/logo/Plant_Care.png"
-      >    
-      <h1>Plant Care</h1>            
-      <hr>
+      />
+      <h1>Plant Care</h1>
+      <hr />
       <nav>
         <ul>
           <li>
             <a href="/dashboard">
-              <img 
-                class="icon" 
+              <img
+                class="icon"
                 alt="dashboard-icon"
                 src="/static/images/icons/dashboard-icon.png"
                 href="/dashboard"
-              >
-            </a>            
+              />
+            </a>
             <a id="dashIcon" href="/dashboard">Dashboard</a>
           </li>
           <li>
             <a href="/user/plants">
-              <img 
-                class="icon" 
-                alt="myplant-icon" 
-                src="/static/images/icons/myplant-icon.png"              
-              >
-            </a>            
+              <img
+                class="icon"
+                alt="myplant-icon"
+                src="/static/images/icons/myplant-icon.png"
+              />
+            </a>
             <a id="myPlantIcon" href="/user/plants">My Plants</a>
           </li>
           <li>
             <a href="/plant/list">
-              <img 
-              class="icon" 
-              alt="about-icon" 
-              src="/static/images/icons/about-icon.png" 
-              >
-            </a>            
+              <img
+                class="icon"
+                alt="about-icon"
+                src="/static/images/icons/about-icon.png"
+              />
+            </a>
             <a id="aboutIcon" href="/plant/list">About</a>
           </li>
           <li>
-            <a href="/error">
+            <a href="/">
               <img
                 class="icon"
                 alt="logout-icon"
-                src="/static/images/icons/logout-icon.png" 
-              >
-            </a>            
-            <a id="logOutIcon" class="log-out" href="/error"> Logout </a>
-          </li>                                            
-        </ul>                    
+                src="/static/images/icons/logout-icon.png"
+              />
+            </a>
+            <a id="logOutIcon" class="log-out" href="/"> Logout </a>
+          </li>
+        </ul>
       </nav>
     </aside>
     <section class="content">
       <section class="topbar">
         <form class="search">
-          <input type="text" id="search" name="search" placeholder=" Search ">
+          <input type="text" id="search" name="search" placeholder=" Search " />
         </form>
-        <p class="user">                    
-          Welcome <%= user.username %>!
-          <img alt="user" class="user" src="/static/images/icons/user-icon(1).png"> 
-        </p>  
-        <section><%- weather %></section>
+        <section class="user">
+          Welcome <%= user.displayName %>!
+          <img
+            alt="user"
+            class="user"
+            src="/static/images/icons/user-icon(1).png"
+          />
+        </section>        
       </section>
-                
+        <%- weather %>
     </section>
     <script src="/static/js/Dashboard/dashboard.js" async defer></script>
   </body>
