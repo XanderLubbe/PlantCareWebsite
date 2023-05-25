@@ -3,7 +3,6 @@ const plantModel = require('../models/plant');
 exports.getPlants = (req, res) => {
   plantModel.getPlantList()
   .then(responseData => {
-    console.log(responseData);
     res.send(responseData);
   })
   .catch(error => {
@@ -15,7 +14,6 @@ exports.getPlants = (req, res) => {
 exports.getByName = (req, res) => {
   plantModel.getPlantByName(req.params.name)
   .then(responseData => {
-    console.log(responseData);
     res.send(responseData);
   })
   .catch(error => {

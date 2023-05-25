@@ -1,76 +1,90 @@
 .card {
-  font-family: "Open Sans", sans-serif;
-  font-size: 1.2em;
-  background: #e7e4e4d0;
-  color: white;
-  padding: 2em;
-  border-radius: 1.875em;
-  width: 100%;
-  max-width: 26.25em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background: #ffffff;
+  color: black;
+  border-radius: 30px;
+  max-width: 400px;
   margin: 1em;
 }
 
-.card .search {
+.search {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.card button {
+button {
   margin: 0.5em;
   border-radius: 50%;
   border: none;
-  height: 2.75em;
-  width: 2.75em;
+  height: 44px;
+  width: 44px;
   outline: none;
   background: #7c7c7c2b;
-  color: white;
+  color: grey;
   cursor: pointer;
   transition: 0.2s ease-in-out;
 }
 
-.card input.search-bar {
+input.search-bar {
   border: none;
   outline: none;
   padding: 0.4em 1em;
-  border-radius: 1.5em;
+  border-radius: 24px;
   background: #7c7c7c2b;
-  color: white;
+  color: rgb(0, 0, 0);
   font-family: inherit;
   font-size: 105%;
-  width: calc(100% - 6.25em);
+  width: calc(100% - 100px);
 }
 
-.card button:hover {
+button:hover {
   background: #7c7c7c6b;
 }
 
-.card h1.temp {
+h1.temp {
   margin: 0;
   margin-bottom: 0.4em;
+  font-size: 1.25em;
 }
 
-.card .flex {
+.flex {
   display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.description {
+  text-transform: capitalize;
+  margin-left: 8px;
+  color: #a1a2af;
+}
+.humidity{
+  color: #a1a2af;
+}
+.wind {
+  color: #a1a2af;
+}
+
+.weather {
+  flex-direction: column;
   align-items: center;
 }
 
-.card .description {
-  text-transform: capitalize;
-  margin-left: 0.5em;
-}
-
-.card .weather.loading {
+.weather.loading {
   visibility: hidden;
-  max-height: 1.25em;
+  max-height: 20px;
   position: relative;
 }
 
-.card .weather.loading:after {
+.weather.loading:after {
   visibility: visible;
   content: "Loading...";
   color: white;
   position: absolute;
   top: 0;
-  left: 1.25em;
+  left: 20px;
 }

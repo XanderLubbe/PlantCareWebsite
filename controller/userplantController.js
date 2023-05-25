@@ -9,7 +9,6 @@ exports.getUserPlants = (req, res) => {
     
     userplantsModel.getUserPlants(user)
     .then(responseData => {
-        console.log(responseData);
         res.send(responseData);
     })
     .catch(error => {
