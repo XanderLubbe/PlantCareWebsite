@@ -1,32 +1,17 @@
-const config = require('../config/myplantcare-config');
-
-async function registerUser(userEmail) {
-  const response = await fetch(`${config.user_url}register`,{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: {
-      'email': userEmail
-    }
-  })
-  
-  return response.json()
-}
+const config = require("../config/myplantcare-config");
 
 async function loginUser(userEmail) {
+  const data = {
+    "email": userEmail
+  }
   const response = await fetch(`${config.user_url}login`,{
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: {
-      'email': userEmail
-    }
+    method: "POST",
+    headers: config.headers,
+    body: JSON.stringify(data)
   })
   
   return response.json()
 }
 
-module.exports = {loginUser, registerUser}
+module.exports = {loginUser}
 
