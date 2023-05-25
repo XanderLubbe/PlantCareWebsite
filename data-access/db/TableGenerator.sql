@@ -6,6 +6,7 @@ CREATE TABLE `AppUser` (
   `userId` int NOT NULL AUTO_INCREMENT,
   `email` varchar(100) NOT NULL,
   `city` longtext NOT NULL,
+  UNIQUE (`email`),
   PRIMARY KEY (`userId`)
 );
 
