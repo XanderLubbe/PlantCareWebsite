@@ -47,13 +47,12 @@ exports.dashboard = async (req, res) => {
   const user = req.session.passport.user;
   userplantsModel.getUserPlants(user)
   .then(async responseData => {
-    let emptyContainer = null;
     const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
-    const totalPlants = await ejs.renderFile(rootDir + "/views/DashboardElements/totalPlants.ejs");
+    const totalPlants = await ejs.renderFile(rootDir + "/views/DashboardElements/totalPlants.ejs", { plantCount: (responseData === false)?0:responseData.length });
     const plantFactArray = getPlantFactData()
     let plantFact = plantFactArray[Math.floor(Math.random() * plantFactArray.length)]
     const plantFacts = await ejs.renderFile(rootDir + "/views/DashboardElements/plantFacts.ejs", {plantFact});
-    res.render("dashboard.ejs", { user: user, weather: weather, totalPlants: totalPlants, plantFacts, plantTiles: emptyContainerr, plantCount: (responseData === false)?0:responseData.length});
+    res.render("dashboard.ejs", { user: user, weather: weather, totalPlants, plantFacts, plantTiles: null});
   })
   .catch(err => {
     console.error(err);
