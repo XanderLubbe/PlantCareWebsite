@@ -21,7 +21,13 @@
   .plantFactText {
     color: grey;
     padding: 0.5em;
+    justify-content: center;
   }
-  .plantFactImg {
+  .totalPlantText {
+    color: grey;
+    padding: 0.5em;
+  }
+  .plantFactImg, .dashboardPlantTotalImg {
     object-fit: contain;
+    max-width: 96px;
   }
