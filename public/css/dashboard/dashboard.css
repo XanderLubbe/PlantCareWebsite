@@ -1,10 +1,12 @@
 :root{
-  --main-bg-color: #f2f2f2;
-  --aside-bg-color: #ffffff;
+  --main-bg-color: #e5e5e5;
+  --aside-bg-color: #06541c;
+  --card-colors : #ffffff;
   --green : #0ed145;
   --dark-green : #0E9545;
   --orange: #F09801;
   --font-family: "Lato", sans-serif;
+  --font-color-black: #000000;
 }
 
 *,
@@ -16,7 +18,6 @@
 }
 
 /* body */
-
 body {
   background: #fff;
   color: #a1a2af;
@@ -67,7 +68,7 @@ li{
 
 nav ul a {
   text-decoration: none;
-  color: rgb(80, 80, 80);;
+  color: rgb(255, 255, 255);;
   padding-left: 2%;
 }
 nav ul img {
@@ -90,6 +91,7 @@ nav ul a:hover {
   width: 80%;
   height: auto;
   align-self: center;
+  border-radius: 50%;
 }
 
 .icon {
@@ -105,7 +107,7 @@ nav ul a:hover {
   align-items: center;
 }
 a.log-out {
-  color: rgb(80, 80, 80);;
+  color: white;
   text-decoration: none;
 }
 
@@ -150,13 +152,13 @@ h1{
 }
 .user {  
   display: flex;
-  width: 100%;
-  background: var(--aside-bg-color);
+  background: var(--card-colors);
   border-radius: 20px;
   height: 5em;
   justify-content: center;
   align-items: center;
-  padding-left: 1em;
+  padding: 1em;
+  color: var(--font-color-black);
 }
 
 
@@ -174,7 +176,7 @@ h1{
   outline: none;
   color: black;
   border-radius: 20px;  
-  background-color: var(--aside-bg-color);
+  background-color: var(--card-colors);
 }
 
 .weather {
