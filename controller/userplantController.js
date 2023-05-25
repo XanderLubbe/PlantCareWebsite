@@ -73,8 +73,9 @@ exports.addPlant = async (req, res) => {
       plantTilePromises.push( ejs.renderFile(rootDir + '/views/Plants/plantTiles.ejs', { plantInfoBubbles: plantInfoBubbles, imageUrl: plantDataArray[i].imageUrl, nickName: plantDataArray[i].nickName } ) )
     }
     const plantTiles = await Promise.all(plantTilePromises)
+    let emptyContainer = null;
     const html = await ejs.renderFile(rootDir + '/views/Plants/myPlants.ejs', {plantTiles})
-    res.render("dashboard.ejs", { user: user, weather: html });
+    res.render("dashboard.ejs", { user: user, weather: emptyContainer, totalPlants: emptyContainer, plantFacts: emptyContainer, plantTiles: html  });
   }
   
   // stub

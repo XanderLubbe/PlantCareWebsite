@@ -45,31 +45,42 @@ exports.errors = (req, res) => {
 exports.dashboard = async (req, res) => {
   const user = req.session.passport.user;
   console.log(req.session);
+  let emptyContainer = null;
   const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
   const totalPlants = await ejs.renderFile(rootDir + "/views/DashboardElements/totalPlants.ejs");
   const plantFactArray = getPlantFactData()
   let plantFact = plantFactArray[Math.floor(Math.random() * plantFactArray.length)]
   const plantFacts = await ejs.renderFile(rootDir + "/views/DashboardElements/plantFacts.ejs", {plantFact});
-  res.render("dashboard.ejs", { user: user, weather: weather, totalPlants: totalPlants, plantFacts });
+  res.render("dashboard.ejs", { user: user, weather: weather, totalPlants: totalPlants, plantFacts, plantTiles: emptyContainer });
 };
 
 function getPlantFactData() {
   return [
     {
       imageUrl: '/static/images/basil.png',
-      plantFact: 'Basil tastes yummy',
+      plantFact: 'Basil is native to tropical Asia and belongs to the mint family.',
     },
     {
       imageUrl: '/static/images/blueberry.png',
-      plantFact: 'Blueberry',
+      plantFact: 'Blueberries can help lower your blood pressure.',
     },      {
       imageUrl: '/static/images/strawberry.png',
-      plantFact: 'Strawberry is red and yummy',
+      plantFact: 'In addition to red, strawberries can be white, pink, yellow, and golden-hued. ',
     },
     {
       imageUrl: '/static/images/cherry.png',
-      plantFact: 'Cherry good',
+      plantFact: 'A typical cherry tree produces 7000 cherries.',
     },      
-
+    {
+      imageUrl: '/static/images/leek.png',
+      plantFact: 'Leeks are very high in Vitamins A and K and are good sources of Vitamin B-6, folate, iron, calcium and manganese.',
+    },      {
+      imageUrl: '/static/images/lavender.png',
+      plantFact: ' Lavender is actually a part of the mint family!',
+    },
+    {
+      imageUrl: '/static/images/bamboo.png',
+      plantFact: 'Bamboo is a giant grass! It is not a tree.',
+    }, 
   ]
 }
