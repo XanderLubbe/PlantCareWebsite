@@ -1,8 +1,55 @@
-<span class="infoBubble infoBubbleWater">
+<article class="totalPlantCard">
     <img class="dashboardPlantTotalImg" src="/static/images/plantCare.png" />
-    <span class="infoBubbleBottomText">
+    <span class="totalPlantsTextContainer">
+        <h2> Total plants: </h2>
         <p>
-            Total plants: <%= "totalPlants" %>
+            <%= "totalPlants" %>
         </p>
     </span>
-</span>
+</article>
+
+
+<script>
+    const mysql = require('mysql');
+
+//MySQL connection
+const connection = mysql.createConnection({
+  host: 'your_host',
+  user: 'your_username',
+  password: 'your_password',
+  database: 'your_database'
+});
+
+function getUserEntryCount(userId, callback) {
+  // Need userId passed through 
+  const query = `
+    SELECT COUNT(*) AS entryCount
+    FROM UserPlantBridge
+    WHERE userId = ?;
+  `;
+
+  // Execute the query
+  connection.query(query, [userId], (error, results) => {
+    if (error) {
+      callback(error, null);
+    } else {
+      // Extract the entry count from the query results
+      const entryCount = results[0].entryCount;
+      callback(null, entryCount);
+    }
+  });
+}
+
+// Usage example
+const userId = 123; // Replace with the actual userId you want to query
+getUserEntryCount(userId, (error, entryCount) => {
+  if (error) {
+    console.error('Error:', error);
+  } else {
+    console.log('Total entries:', entryCount);
+  }
+
+  // Close the MySQL connection
+  connection.end();
+});
+</script>

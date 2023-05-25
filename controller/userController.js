@@ -46,5 +46,30 @@ exports.dashboard = async (req, res) => {
   const user = req.session.passport.user;
   console.log(req.session);
   const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
-  res.render("dashboard.ejs", { user: user, weather: weather });
+  const totalPlants = await ejs.renderFile(rootDir + "/views/DashboardElements/totalPlants.ejs");
+  const plantFactArray = getPlantFactData()
+  let plantFact = plantFactArray[Math.floor(Math.random() * plantFactArray.length)]
+  const plantFacts = await ejs.renderFile(rootDir + "/views/DashboardElements/plantFacts.ejs", {plantFact});
+  res.render("dashboard.ejs", { user: user, weather: weather, totalPlants: totalPlants, plantFacts });
 };
+
+function getPlantFactData() {
+  return [
+    {
+      imageUrl: '/static/images/basil.png',
+      plantFact: 'Basil tastes yummy',
+    },
+    {
+      imageUrl: '/static/images/blueberry.png',
+      plantFact: 'Blueberry',
+    },      {
+      imageUrl: '/static/images/strawberry.png',
+      plantFact: 'Strawberry is red and yummy',
+    },
+    {
+      imageUrl: '/static/images/cherry.png',
+      plantFact: 'Cherry good',
+    },      
+
+  ]
+}

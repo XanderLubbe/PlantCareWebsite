@@ -1,4 +1,4 @@
-.card {
+.card, .totalPlantCard, .plantFactCard {
   font-family: "Open Sans", sans-serif;
   font-size: 1.2em;
   background: #e7e4e4d0;
@@ -73,4 +73,23 @@
   position: absolute;
   top: 0;
   left: 1.25em;
+}
+
+/* total plant css */
+
+/* plant fact card css */
+.plantFactCard, .totalPlantCard {
+  display: flex;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.2em;
+  background: #e7e4e4d0;
+  color: white;
+  padding: 1em;
+  border-radius: 1.875em;
+  /* width: 25%; */
+  /* max-width: 26.25em; */
+  /* margin: 1em; */
+}
+.plantFactTextContainer, .totalPlantsTextContainer {
+  margin-left: 1em;
 }
