@@ -34,7 +34,7 @@ exports.authCallback = (req, res) =>{
 
 exports.getLogin = (req, res) => {
   let message = req.session.message;
-  req.session.passport = { user: null};
+  req.session.passport = { user: {succeeded: false}};
   res.render("Login/login.ejs", { result: message });
 };
 

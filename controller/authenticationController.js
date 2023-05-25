@@ -20,7 +20,7 @@ passport.use(
 
 exports.auth = (req, res, next) => {
   try {
-    if (!req.session.passport.user || req.session.passport.user.succeeded === false) {
+    if (req.session.passport.user.succeeded === false) {
       let errorMessage =
         "Oops, it looks like your login info didn't grow on us. Please try again.";
       req.session.message = errorMessage;
