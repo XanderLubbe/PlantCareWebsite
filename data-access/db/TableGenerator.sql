@@ -4,11 +4,8 @@ USE PlantDB;
 
 CREATE TABLE `AppUser` (
   `userId` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `passcode` longtext NOT NULL,
   `city` longtext NOT NULL,
-  `province` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`userId`)
 );
 
@@ -51,4 +48,11 @@ CREATE TABLE `UserPlantBridge` (
   PRIMARY KEY (`bridgeId`),
   CONSTRAINT `fk_plantId_2` FOREIGN KEY (`plantId`) REFERENCES `Plant`(`plantId`),
   CONSTRAINT `fk_userId` FOREIGN KEY (`userId`) REFERENCES `AppUser`(`userId`)
+);
+
+CREATE TABLE `APIKeys` (
+  `apiId` int NOT NULL AUTO_INCREMENT,
+  `APIKey` varchar(36) NOT NULL,
+  UNIQUE (`APIKey`),
+  PRIMARY KEY (`apiId`)
 );

@@ -3,11 +3,14 @@ const router = express.Router();
 const UserPlantController = require('../controller/userplantController');
 const authController = require("../controller/authenticationController");
 
+router.get('/', authController.auth, UserPlantController.myPlants);
 
-router.get('/', authController.auth, UserPlantController.index);
+router.get('/addPlant', UserPlantController.addPlant);
 
-router.post('/add', authController.auth, UserPlantController.postAddPlant);
+router.post('/addPlant', authController.auth, UserPlantController.postAddPlant);
 
 router.post('/remove', authController.auth, UserPlantController.postRemovePlant);
+
+
 
 module.exports = router;

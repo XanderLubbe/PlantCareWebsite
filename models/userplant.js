@@ -1,50 +1,44 @@
-const userplantQueries = require('../data-access/queries/userplantQueries');
-const connection = require('../data-access/db').con;
+const config = require('../config/myplantcare-config');
 
-exports.getUserPlants = ({userId}) => {
-  return new Promise((resolve, reject) => {
-    connection.query(userplantQueries.getUserPlants, [userId], (err, result, fields) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(result);
-      }
-    });
-  });
+async function getUserPlants ({userId}) {
+  const response = await fetch(`${config.userplants_url}/${userId}`,{
+    method: 'GET',
+    headers: {
+      'api-key': config.api_key,
+    }
+  })
+  return response.json()
 }
 
-exports.getUserPlantByName = (userId, plantName)  =>  {
-  return new Promise((resolve, reject) => {
-    connection.query(userplantQueries.getUserPlants, [userId, plantName], (err, result, fields) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve((result.affectedRows > 0)?true:false);
-      }
-    });
-  });
+async function insertUserPlant (plantNickName, {userId}, plantId) {
+  const response = await fetch(`${config.userplants_url}add`,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': config.api_key,
+    },
+    body: {
+      'plantNickName': plantNickName,
+      'userId': userId,
+      'plantId': plantId
+    }
+  })
+  return response.json()
 }
 
-exports.insertUserPlant = (NickName, {userId}, plantId) =>  {
-  return new Promise((resolve, reject) => {
-    connection.query(userplantQueries.insertUserPlant, [NickName, userId, plantId], (err, result, fields) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve((result.affectedRows > 0)?true:false);
-      }
-    });
-  });
+async function removeUserPlant ({userId}, plantNickName) {
+  const response = await fetch(`${config.userplants_url}remove`,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': config.api_key,
+    },
+    body: {
+      'userId': userId,
+      'plantNickName': plantNickName
+    }
+  })
+  return response.json()
 }
 
-exports.removeUserPlant = (userId, plantNickName) =>  {
-    return new Promise((resolve, reject) => {
-        connection.query(userplantQueries.removeUserPlant, [userId, plantNickName], (err, result, fields) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve((result.affectedRows > 0)?true:false);
-          }
-        });
-    });
-}
+module.exports = {getUserPlants, insertUserPlant, removeUserPlant}

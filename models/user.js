@@ -1,45 +1,43 @@
-const userQueries = require('../data-access/queries/userQueries');
-const connection = require('../data-access/db').con;
+const config = require('../config/myplantcare-config');
 
-class User {
-  constructor({userId, username, email, password, city, province}) {
-    this.userId = userId;
-    this.username = username;
-    this.email = email;
-    this.passcode = password;
-    this.city = city;
-    this.province = province;
-  }
-
-  registerUser({username, email, passcode, city, province}) {
-    return new Promise((resolve, reject) => {
-      connection.query(userQueries.registerUser, [username, email, passcode, city, province], (err, result, fields) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve((result.affectedRows > 0)?true:false);
-        }
-      });
-    });
-  }
-
-  async validateUser(user) {
-    return new Promise((resolve, reject) => {
-      connection.query(userQueries.validateUser, [user.username, user.passcode] , (err, result, fields) => {
-        if (err) {
-          reject(err);
-        } else {
-          if (result.length != 0) {
-            user = new User(result[0]);
-            user.succeeded = true;
-          } else {
-            user.succeeded = false;
-          }
-          resolve(user);
-        }
-      });
-    });
-  }
+async function registerUser(user) {
+  const response = await fetch(`${config.user_url}register`,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': config.api_key,
+    },
+    body: JSON.stringify(user)
+  })
+  
+  return response.json()
 }
-module.exports = User
+
+async function validateUser(user) {
+  const response = await fetch(`${config.user_url}login`,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': config.api_key,
+    },
+    body: JSON.stringify(user)
+  })
+  
+  return response.json()
+}
+
+async function updateUser(user) {
+  const response = await fetch(`${config.user_url}update/${user.userId}`,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': config.api_key,
+    },
+    body: JSON.stringify(user)
+  })
+  
+  return response.json()
+}
+
+module.exports = {registerUser, validateUser, updateUser}
 
