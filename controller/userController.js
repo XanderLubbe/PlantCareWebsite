@@ -1,5 +1,5 @@
-const { log } = require("console");
 const userModel = require("../models/user");
+const userplantsModel = require('../models/userplant');
 const ejs = require("ejs");
 const passport = require("passport");
 const path = require('path');
@@ -19,6 +19,7 @@ exports.authCallback = (req, res) =>{
   .then(responseData => {
     if (responseData.succeeded === true){
       req.session.passport.user.userId = responseData.userId;
+      req.session.passport.user.city = responseData.city;
       req.session.passport.user.succeeded = responseData.succeeded;
       res.redirect("/dashboard");
     } else {
@@ -44,14 +45,19 @@ exports.errors = (req, res) => {
 
 exports.dashboard = async (req, res) => {
   const user = req.session.passport.user;
-  console.log(req.session);
-  let emptyContainer = null;
-  const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
-  const totalPlants = await ejs.renderFile(rootDir + "/views/DashboardElements/totalPlants.ejs");
-  const plantFactArray = getPlantFactData()
-  let plantFact = plantFactArray[Math.floor(Math.random() * plantFactArray.length)]
-  const plantFacts = await ejs.renderFile(rootDir + "/views/DashboardElements/plantFacts.ejs", {plantFact});
-  res.render("dashboard.ejs", { user: user, weather: weather, totalPlants: totalPlants, plantFacts, plantTiles: emptyContainer });
+  userplantsModel.getUserPlants(user)
+  .then(async responseData => {
+    let emptyContainer = null;
+    const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
+    const totalPlants = await ejs.renderFile(rootDir + "/views/DashboardElements/totalPlants.ejs");
+    const plantFactArray = getPlantFactData()
+    let plantFact = plantFactArray[Math.floor(Math.random() * plantFactArray.length)]
+    const plantFacts = await ejs.renderFile(rootDir + "/views/DashboardElements/plantFacts.ejs", {plantFact});
+    res.render("dashboard.ejs", { user: user, weather: weather, totalPlants: totalPlants, plantFacts, plantTiles: emptyContainerr, plantCount: (responseData === false)?0:responseData.length});
+  })
+  .catch(err => {
+    console.error(err);
+  });
 };
 
 function getPlantFactData() {

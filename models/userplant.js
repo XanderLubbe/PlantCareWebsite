@@ -3,10 +3,9 @@ const config = require('../config/myplantcare-config');
 async function getUserPlants ({userId}) {
   const response = await fetch(`${config.userplants_url}/${userId}`,{
     method: 'GET',
-    headers: {
-      'api-key': config.api_key,
-    }
+    headers: config.headers,
   })
+
   return response.json()
 }
 
