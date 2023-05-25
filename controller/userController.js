@@ -19,6 +19,7 @@ exports.authCallback = (req, res) =>{
   .then(responseData => {
     if (responseData.succeeded === true){
       req.session.passport.user.userId = responseData.userId;
+      req.session.passport.user.city = responseData.city;
       req.session.passport.user.succeeded = responseData.succeeded;
       res.redirect("/dashboard");
     } else {
@@ -46,8 +47,10 @@ exports.dashboard = async (req, res) => {
   const user = req.session.passport.user;
   userplantsModel.getUserPlants(user)
   .then(async responseData => {
-    const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
-    res.render("dashboard.ejs", { user: user, weather: weather, plantCount: responseData.length});
+    if (responseData === false) {
+      const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
+      res.render("dashboard.ejs", { user: user, weather: weather, plantCount: responseData.length});
+    }
   })
   .catch(err => {
     console.error(err);
