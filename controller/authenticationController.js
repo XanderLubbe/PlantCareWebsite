@@ -19,15 +19,23 @@ passport.use(
 );
 
 exports.auth = (req, res, next) => {
-    if (!req.session.passport || !req.session.passport.user || req.session.passport.user.succeeded === false) {
-        let errorMessage =
-          "Oops, it looks like your login info didn't grow on us. Please try again.";
-        req.session.message = errorMessage;
-        res.redirect("/");
-    }
-    else{
-        next();
-    }
+  try {
+    if (!req.session.passport.user || req.session.passport.user.succeeded === false) {
+      let errorMessage =
+        "Oops, it looks like your login info didn't grow on us. Please try again.";
+      req.session.message = errorMessage;
+      res.redirect("/");
+  }
+  else{
+      next();
+  }
+  } catch (error) {
+    let errorMessage =
+        "Oops, it looks like your login info didn't grow on us. Please try again.";
+      req.session.message = errorMessage;
+      res.redirect("/");
+  }
+    
 }
 
 exports.authGoogle = passport.authenticate("google", { scope: ["profile", "email"] })
