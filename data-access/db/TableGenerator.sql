@@ -50,3 +50,10 @@ CREATE TABLE `UserPlantBridge` (
   CONSTRAINT `fk_plantId_2` FOREIGN KEY (`plantId`) REFERENCES `Plant`(`plantId`),
   CONSTRAINT `fk_userId` FOREIGN KEY (`userId`) REFERENCES `AppUser`(`userId`)
 );
+
+CREATE TABLE `APIKeys` (
+  `apiId` int NOT NULL AUTO_INCREMENT,
+  `APIKey` varchar(36) NOT NULL,
+  UNIQUE (`APIKey`),
+  PRIMARY KEY (`apiId`)
+);
