@@ -28,11 +28,10 @@
   });
 
   function getUserEntryCount(userId, callback) {
-    // Need userId passed through 
     const query = `
     SELECT COUNT(*) AS entryCount
     FROM UserPlantBridge
-    WHERE userId = ?;
+    WHERE userId = '${userId}';
   `;
 
     // query

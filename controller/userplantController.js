@@ -110,3 +110,4 @@ exports.addPlant = async (req, res) => {
       },
     ]
   }
+
