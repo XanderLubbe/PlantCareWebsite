@@ -44,7 +44,6 @@ exports.errors = (req, res) => {
 
 exports.dashboard = async (req, res) => {
   const user = req.session.passport.user;
-  console.log(req.session);
   const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
   res.render("dashboard.ejs", { user: user, weather: weather });
 };
