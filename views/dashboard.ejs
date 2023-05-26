@@ -102,7 +102,12 @@
         <section class="dashbaordFactElement">
           <%- plantFacts %>
         </section>
-        <!-- <h2>Your plants: </h2> -->
+        <% if (myPlant) { %>
+          <h2>Your plants: </h2>
+          <a href="/user/plants/addPlant">
+            <button class="addPlant-button">Add plant</button><br>
+          </a>
+          <% } %>
         <%- plantTiles %>
         <%- addPlant %>
       </section>
