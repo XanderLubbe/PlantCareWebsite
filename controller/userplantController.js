@@ -57,8 +57,9 @@ exports.postRemovePlant = (req, res) => {
 }
 
 exports.addPlant = async (req, res) => {
-    const html = await ejs.renderFile(rootDir + '/views/Plants/addPlant.ejs')
-    res.status(200).send(html)
+  const user = req.session.passport.user;
+  const addPlant = await ejs.renderFile(rootDir + '/views/Plants/addPlant.ejs', {})
+  res.render("dashboard.ejs", { user: user, weather: null, totalPlants: null, plantFacts: null, plantTiles: null, plantCount: null, addPlant});
   }
   
   exports.myPlants = async (req, res) => {
@@ -76,9 +77,9 @@ exports.addPlant = async (req, res) => {
         }
         const plantTiles = await Promise.all(plantTilePromises)
         const html = await ejs.renderFile(rootDir + '/views/Plants/myPlants.ejs', {plantTiles})
-        res.render("dashboard.ejs", { user: user, weather: null, totalPlants: null, plantFacts: null, plantTiles: html, plantCount: responseData.length});
+        res.render("dashboard.ejs", { user: user, weather: null, totalPlants: null, plantFacts: null, plantTiles: html, plantCount: responseData.length, addPlant: null});
       } else {
-        res.render("dashboard.ejs", { user: user, weather: null,totalPlants: null, plantFacts: null, plantTiles: null, plantCount: responseData.length });
+        res.render("dashboard.ejs", { user: user, weather: null,totalPlants: null, plantFacts: null, plantTiles: null, plantCount: responseData.length, addPlant: null });
       }
     })
     .catch(error => {
