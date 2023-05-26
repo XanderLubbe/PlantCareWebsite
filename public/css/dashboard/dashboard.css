@@ -185,8 +185,10 @@ h1{
   padding: 1rem;
 }
 .dashboardElements {
-  flex-flow: row-wrap;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* flex-flow: row; */
 }
 
 
