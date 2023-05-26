@@ -190,6 +190,12 @@ h1{
   flex-wrap: wrap;
   /* flex-flow: row; */
 }
+.addPlant-button{
+  background-color: #FBF2E7;
+  margin-top: 8px;  
+  border-radius: 1em;
+  padding: 1em;
+}
 
 
 /* end main content */

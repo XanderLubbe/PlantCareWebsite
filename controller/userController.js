@@ -52,7 +52,7 @@ exports.dashboard = async (req, res) => {
     const plantFactArray = getPlantFactData()
     let plantFact = plantFactArray[Math.floor(Math.random() * plantFactArray.length)]
     const plantFacts = await ejs.renderFile(rootDir + "/views/DashboardElements/plantFacts.ejs", {plantFact});
-    res.render("dashboard.ejs", { user: user, weather: weather, totalPlants, plantFacts, plantTiles: null});
+    res.render("dashboard.ejs", { user: user, weather: weather, totalPlants, plantFacts, plantTiles: null, addPlant: null,  myPlant: false});
   })
   .catch(err => {
     console.error(err);
