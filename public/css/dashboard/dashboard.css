@@ -184,6 +184,12 @@ h1{
   justify-content: center;
   padding: 1rem;
 }
+.dashboardElements {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* flex-flow: row; */
+}
 
 
 /* end main content */

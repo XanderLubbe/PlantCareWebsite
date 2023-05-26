@@ -76,9 +76,9 @@ exports.addPlant = async (req, res) => {
         }
         const plantTiles = await Promise.all(plantTilePromises)
         const html = await ejs.renderFile(rootDir + '/views/Plants/myPlants.ejs', {plantTiles})
-        res.render("dashboard.ejs", { user: user, weather: html, plantCount: responseData.length});
+        res.render("dashboard.ejs", { user: user, weather: null, totalPlants: null, plantFacts: null, plantTiles: html, plantCount: responseData.length});
       } else {
-        res.render("dashboard.ejs", { user: user, weather: null, plantCount: responseData.length });
+        res.render("dashboard.ejs", { user: user, weather: null,totalPlants: null, plantFacts: null, plantTiles: null, plantCount: responseData.length });
       }
     })
     .catch(error => {
@@ -86,7 +86,6 @@ exports.addPlant = async (req, res) => {
       res.status(500).send('An error occurred while retrieving user\'s plants');
     });
 
-    
   }
   
   // stub
@@ -122,3 +121,4 @@ exports.addPlant = async (req, res) => {
       },
     ]
   }
+

@@ -1,0 +1,32 @@
+/* total plant css */
+/* plant fact card css */
+.plantFactCard, .totalPlantCard {
+    display: flex;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.2em;
+    background: white;
+    color: white;
+    padding: 1em;
+    border-radius: 1.875em;
+    width: 25%;
+    max-width: 26.25em;
+    min-width: 15em;
+    margin: 1em;
+  }
+  .plantFactTextContainer, .totalPlantsTextContainer {
+    margin-left: 0.5em;
+    color: black;
+  }
+  .plantFactText {
+    color: grey;
+    padding: 0.5em;
+    justify-content: center;
+  }
+  .totalPlantText {
+    color: grey;
+    padding: 0.5em;
+  }
+  .plantFactImg, .dashboardPlantTotalImg {
+    object-fit: contain;
+    max-width: 96px;
+  }
