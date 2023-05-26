@@ -21,7 +21,7 @@
             })
     }
     async function populateHTML(data) {
-        const selector = document.getElementById("selectPlantName")
+        const selector = document.getElementById("plantId")
         selector.innerHTML = '';
         for (let i = 0; i < data.length; i++) {
             const plantName = (data[i].plantName != null ? data[i].plantName : "")
@@ -29,7 +29,9 @@
             const otherName = (data[i].otherName != null ? data[i].otherName : "")
             const plantId = data[i].plantId
 
-            selector.innerHTML += `<option plant-id="${plantId}" >
+
+            console.log(plantId);
+            selector.innerHTML += `<option value="${plantId}" >
                 ${plantName} | ${scientificName} | ${otherName}
                 </option>`
         }
@@ -38,7 +40,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const nickNameInput = document.getElementById('nickName');
         const searchInput = document.getElementById('searchInput');
-        const selectPlantName = document.getElementById('selectPlantName');
+        const selectPlantName = document.getElementById('plantId');
         const addPlantButton = document.getElementById('addPlantButton');
 
         function checkFormFields() {
@@ -66,7 +68,7 @@
             <!-- add plant section  -->
             <section class="addPlant-section">
                 <h2>Enter your plant details below </h2>
-                <form class="addPlant-form" action="/addPlant" method="POST">
+                <form class="addPlant-form" action="/user/plants/addPlant" method="POST">
                     <fieldset class="addPlant-fieldset">
                         <legend>Give your new plant a cute name </legend>
                         <input class="addPlant-name-input" type="text" id="plantNickName" name="plantNickName" value=""><br>
@@ -77,8 +79,8 @@
                         <legend>Search for your plant below </legend>
                         <input class="addPlant-searchBox" type="text" id="searchInput" onkeyup="searchOptions()"
                             placeholder="Search"><br>
-                        <select class="select-plant-name" id="selectPlantName">
-                            <option value="" disabled selected>Please search above</option>
+                        <select class="select-plant-name" name="plantId" id="plantId">
+                            <option value="" selected>Please search above</option>
                         </select><br>
                     </fieldset>
 

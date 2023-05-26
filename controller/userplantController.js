@@ -20,19 +20,21 @@ exports.postAddPlant = (req, res) => {
     const responseMessage = 'Successfully added!';
     const errorMessage = 'Unferntunately failed adding plant!';
 
+    console.log(req.body);
     const user = req.session.passport.user;
-    userplantsModel.insertUserPlant(req.body.NickName, user, req.body.plantId)
+    userplantsModel.insertUserPlant(req.body.plantNickName, user, parseInt(req.body.plantId))
     .then(responseData => {
+      console.log(responseData);
         if (responseData === true){
-            res.render('dashboard.ejs', {user: {username:responseMessage}});
+          res.redirect('/user/plants')
         } else{
-            res.render('dashboard.ejs', {user: {username:errorMessage}, html: html});
+          res.redirect('/user/plants/addPlant')
         }
         
       })
     .catch(error => {
         console.error('Error registering user:', error);
-        res.render('Login/register.ejs', {user: {username:error}});
+        res.redirect('/errors')
       });
 }
 
