@@ -57,6 +57,9 @@ exports.postRemovePlant = (req, res) => {
 }
 
 exports.addPlant = async (req, res) => {
+  const addPlantImageOptions = getPlantTileImage()
+  // use to submit form with image
+  let addPlantImage = addPlantImageOptions[Math.floor(Math.random() * plantFactArray.length)]
   const user = req.session.passport.user;
   const addPlant = await ejs.renderFile(rootDir + '/views/Plants/addPlant.ejs', {})
   res.render("dashboard.ejs", { user: user, weather: null, totalPlants: null, plantFacts: null, plantTiles: null, plantCount: null, addPlant});
@@ -64,7 +67,6 @@ exports.addPlant = async (req, res) => {
   
   exports.myPlants = async (req, res) => {
     const user = req.session.passport.user;
-    
     userplantsModel.getUserPlants(user)
     .then(async responseData => {
       if (responseData) {
@@ -77,6 +79,7 @@ exports.addPlant = async (req, res) => {
         }
         const plantTiles = await Promise.all(plantTilePromises)
         const html = await ejs.renderFile(rootDir + '/views/Plants/myPlants.ejs', {plantTiles})
+        
         res.render("dashboard.ejs", { user: user, weather: null, totalPlants: null, plantFacts: null, plantTiles: html, plantCount: responseData.length, addPlant: null});
       } else {
         res.render("dashboard.ejs", { user: user, weather: null,totalPlants: null, plantFacts: null, plantTiles: null, plantCount: responseData.length, addPlant: null });
@@ -89,7 +92,7 @@ exports.addPlant = async (req, res) => {
 
   }
   
-  // stub
+  // stub for fetching data
   function getPlantDataStub() {
     return [
       {
