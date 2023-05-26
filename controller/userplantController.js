@@ -121,4 +121,28 @@ exports.addPlant = async (req, res) => {
       },
     ]
   }
-
+  function getPlantTileImage(){
+    return [
+      {
+        imageUrl: '/static/images/philodendron.jpg',
+      },
+      {
+        imageUrl: '/static/images/aloe.jpg',
+      },
+      {
+        imageUrl: '/static/images/bromeliad.jpg',
+      },
+      {
+        imageUrl: '/static/images/orchid.jpg',
+      },
+      {
+        imageUrl: '/static/images/sanserveria.jpg',
+      },
+      {
+        imageUrl: '/static/images/sedum.jpg',
+      },
+      {
+        imageUrl: '/static/images/spathiphyllum.jpg',
+      },      
+    ]
+  }
