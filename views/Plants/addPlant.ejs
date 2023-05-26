@@ -15,7 +15,7 @@
         }
     }
     async function fetchOptions(query) {
-        return fetch(`http://localhost:8000/plant/search/${query}`).then(
+        return fetch(`${window.location.origin}/plant/search/${query}`).then(
             (response) => {
                 return response.json()
             })
@@ -69,7 +69,7 @@
                 <form class="addPlant-form" action="/addPlant" method="POST">
                     <fieldset class="addPlant-fieldset">
                         <legend>Give your new plant a cute name </legend>
-                        <input class="addPlant-name-input" type="text" id="nickName" name="nickName" value=""><br>
+                        <input class="addPlant-name-input" type="text" id="plantNickName" name="plantNickName" value=""><br>
                     </fieldset>
                     <br>
 
@@ -82,7 +82,7 @@
                         </select><br>
                     </fieldset>
 
-                    <button class="addPlant-button" id="addPlantButton" type="submit" disabled>Add plant</button><br>
+                    <button class="addPlant-button" id="addPlantButton" type="submit" >Add plant</button><br>
                 </form>
             </section>
     </main>

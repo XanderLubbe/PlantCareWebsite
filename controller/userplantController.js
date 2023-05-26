@@ -59,7 +59,7 @@ exports.postRemovePlant = (req, res) => {
 exports.addPlant = async (req, res) => {
   const addPlantImageOptions = getPlantTileImage()
   // use to submit form with image
-  let addPlantImage = addPlantImageOptions[Math.floor(Math.random() * plantFactArray.length)]
+  let addPlantImage = addPlantImageOptions[Math.floor(Math.random() * addPlantImageOptions.length)]
   const user = req.session.passport.user;
   const addPlant = await ejs.renderFile(rootDir + '/views/Plants/addPlant.ejs', {})
   res.render("dashboard.ejs", { user: user, weather: null, totalPlants: null, plantFacts: null, plantTiles: null, plantCount: null, addPlant});
