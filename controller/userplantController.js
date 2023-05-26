@@ -20,19 +20,21 @@ exports.postAddPlant = (req, res) => {
     const responseMessage = 'Successfully added!';
     const errorMessage = 'Unferntunately failed adding plant!';
 
+    console.log(req.body);
     const user = req.session.passport.user;
-    userplantsModel.insertUserPlant(req.body.NickName, user, req.body.plantId)
+    userplantsModel.insertUserPlant(req.body.plantNickName, user, parseInt(req.body.plantId))
     .then(responseData => {
+      console.log(responseData);
         if (responseData === true){
-            res.render('dashboard.ejs', {user: {username:responseMessage}});
+          res.redirect('/user/plants')
         } else{
-            res.render('dashboard.ejs', {user: {username:errorMessage}, html: html});
+          res.redirect('/user/plants/addPlant')
         }
         
       })
     .catch(error => {
         console.error('Error registering user:', error);
-        res.render('Login/register.ejs', {user: {username:error}});
+        res.redirect('/errors')
       });
 }
 
@@ -57,13 +59,16 @@ exports.postRemovePlant = (req, res) => {
 }
 
 exports.addPlant = async (req, res) => {
-    const html = await ejs.renderFile(rootDir + '/views/Plants/addPlant.ejs')
-    res.status(200).send(html)
+  const addPlantImageOptions = getPlantTileImage()
+  // use to submit form with image
+  let addPlantImage = addPlantImageOptions[Math.floor(Math.random() * addPlantImageOptions.length)]
+  const user = req.session.passport.user;
+  const addPlant = await ejs.renderFile(rootDir + '/views/Plants/addPlant.ejs', {})
+  res.render("dashboard.ejs", { user: user, weather: null, totalPlants: null, plantFacts: null, plantTiles: null, plantCount: null, addPlant, myPlant: false});
   }
   
   exports.myPlants = async (req, res) => {
     const user = req.session.passport.user;
-    
     userplantsModel.getUserPlants(user)
     .then(async responseData => {
       if (responseData) {
@@ -76,9 +81,10 @@ exports.addPlant = async (req, res) => {
         }
         const plantTiles = await Promise.all(plantTilePromises)
         const html = await ejs.renderFile(rootDir + '/views/Plants/myPlants.ejs', {plantTiles})
-        res.render("dashboard.ejs", { user: user, weather: html, plantCount: responseData.length});
+        
+        res.render("dashboard.ejs", { user: user, weather: null, totalPlants: null, plantFacts: null, plantTiles: html, plantCount: responseData.length, addPlant: null,  myPlant: true});
       } else {
-        res.render("dashboard.ejs", { user: user, weather: null, plantCount: responseData.length });
+        res.render("dashboard.ejs", { user: user, weather: null,totalPlants: null, plantFacts: null, plantTiles: null, plantCount: responseData.length, addPlant: null, myPlant: true });
       }
     })
     .catch(error => {
@@ -86,10 +92,9 @@ exports.addPlant = async (req, res) => {
       res.status(500).send('An error occurred while retrieving user\'s plants');
     });
 
-    
   }
   
-  // stub
+  // stub for fetching data
   function getPlantDataStub() {
     return [
       {
@@ -120,5 +125,30 @@ exports.addPlant = async (req, res) => {
         imageUrl: '/static/images/spathiphyllum.jpg',
         nickName: 'Bobby',
       },
+    ]
+  }
+  function getPlantTileImage(){
+    return [
+      {
+        imageUrl: '/static/images/philodendron.jpg',
+      },
+      {
+        imageUrl: '/static/images/aloe.jpg',
+      },
+      {
+        imageUrl: '/static/images/bromeliad.jpg',
+      },
+      {
+        imageUrl: '/static/images/orchid.jpg',
+      },
+      {
+        imageUrl: '/static/images/sanserveria.jpg',
+      },
+      {
+        imageUrl: '/static/images/sedum.jpg',
+      },
+      {
+        imageUrl: '/static/images/spathiphyllum.jpg',
+      },      
     ]
   }

@@ -96,8 +96,22 @@
           />
         </section>        
       </section>
+      <section class="dashboardElements">
         <%- weather %>
-        <%= plantCount %>
+        <%- totalPlants %>
+        <section class="dashbaordFactElement">
+          <%- plantFacts %>
+        </section>
+        <% if (myPlant) { %>
+          <h2>Your plants: </h2>
+          <a href="/user/plants/addPlant">
+            <button class="addPlant-button">Add plant</button><br>
+          </a>
+          <% } %>
+        <%- plantTiles %>
+        <%- addPlant %>
+      </section>
+
     </section>
     <script src="/static/js/Dashboard/dashboard.js" async defer></script>
   </body>

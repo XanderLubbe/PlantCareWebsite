@@ -48,9 +48,44 @@ exports.dashboard = async (req, res) => {
   userplantsModel.getUserPlants(user)
   .then(async responseData => {
     const weather = await ejs.renderFile(rootDir + "/views/Weather/weather.ejs");
-    res.render("dashboard.ejs", { user: user, weather: weather, plantCount: (responseData === false)?0:responseData.length});
+    const totalPlants = await ejs.renderFile(rootDir + "/views/DashboardElements/totalPlants.ejs", { plantCount: (responseData === false)?0:responseData.length });
+    const plantFactArray = getPlantFactData()
+    let plantFact = plantFactArray[Math.floor(Math.random() * plantFactArray.length)]
+    const plantFacts = await ejs.renderFile(rootDir + "/views/DashboardElements/plantFacts.ejs", {plantFact});
+    res.render("dashboard.ejs", { user: user, weather: weather, totalPlants, plantFacts, plantTiles: null, addPlant: null,  myPlant: false});
   })
   .catch(err => {
     console.error(err);
   });
 };
+
+function getPlantFactData() {
+  return [
+    {
+      imageUrl: '/static/images/basil.png',
+      plantFact: 'Basil is native to tropical Asia and belongs to the mint family.',
+    },
+    {
+      imageUrl: '/static/images/blueberry.png',
+      plantFact: 'Blueberries can help lower your blood pressure.',
+    },      {
+      imageUrl: '/static/images/strawberry.png',
+      plantFact: 'In addition to red, strawberries can be white, pink, yellow, and golden-hued. ',
+    },
+    {
+      imageUrl: '/static/images/cherry.png',
+      plantFact: 'A typical cherry tree produces 7000 cherries.',
+    },      
+    {
+      imageUrl: '/static/images/leek.png',
+      plantFact: 'Leeks are very high in Vitamins A and K and are good sources of Vitamin B-6, folate, iron, calcium and manganese.',
+    },      {
+      imageUrl: '/static/images/lavender.png',
+      plantFact: ' Lavender is actually a part of the mint family!',
+    },
+    {
+      imageUrl: '/static/images/bamboo.png',
+      plantFact: 'Bamboo is a giant grass! It is not a tree.',
+    }, 
+  ]
+}
